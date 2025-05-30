@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mis informes</title>
+    <div th:include="navbar :: head (titulo='Mis informes')"></div>
+    <link rel="stylesheet" th:href="@{/css/custom/global/global.css}">
+    <link rel="stylesheet" th:href="@{/css/custom/paciente/ver-informes-propios.css}">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+
+</head>
+<body>
+    <div th:replace="navbar::menuBar"></div>
+    <div class="body">
+        <div class="page-container">
+            <!-- Modified header with separate styling for label and DNI -->
+            <h2 class="header"><strong>Mis informes</strong></h2>
+
+            <!-- Filter Section -->
+            <form  th:action="@{/api/paciente/informes}" method="get">
+                <div class="filter-section">
+                    <div class="input-group">
+                        <label for="input-id">Id</label>
+                        <input th:value="${informeIdentificadorPublico}"  name="informeIdentificadorPublico" type="text" id="input-id" class="filter-input">
+                    </div>
+                    <div class="input-group">
+                        <label for="input-centro">Centro</label>
+                        <input th:value="${centroMedicoNombre}"  name="centroMedicoNombre" type="text" id="input-centro" class="filter-input">
+                    </div>
+                    <div class="input-group">
+                        <label for="input-profesional">Profesional</label>
+                        <input th:value="${profesionalMedicoNombre}"  name="profesionalMedicoNombre" type="text" id="input-profesional" class="filter-input">
+                    </div>
+                    <div class="input-group">
+                        <label for="select-especialidad">Especialidad</label>
+                        <select id="select-especialidad" name="especialidadNombre" class="filter-input">
+                            <option value="">Todas</option>
+                            <option th:each="esp : ${especialidadesMedicas}"
+                                    th:value="${esp.nombre}"
+                                    th:text="${esp.nombre}"
+                                    th:selected="${esp.nombre == especialidadNombre}">
+                            </option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label for="input-fecha-desde">Fecha desde</label>
+                        <input th:value="${fechaDesdeStr}"  name="fechaDesde" type="date" id="input-fecha-desde" class="filter-input date-input">
+                    </div>
+                    <div class="input-group">
+                        <label for="input-fecha-hasta">Fecha hasta</label>
+                        <input th:value="${fechaHastaStr}"  name="fechaHasta" type="date" id="input-fecha-hasta" class="filter-input date-input">
+                    </div>
+                    <button class="button-primary">Aplicar filtros</button>
+                </div>
+            </form>
+
+
+            <!-- Report Cards -->
+            <div th:each="informe: ${informes}" class="report-card">
+                <div class="report-id"><strong>Id. informe :</strong> <span th:text="${informe.identificadorPublico}" class="report-number"></span> </div>
+                <div class="report-detail"><strong>Título: </strong> <span th:text="${informe.titulo}"> </span> </div>
+                <div class="report-detail"><strong>Descripción: </strong> <span th:text="${informe.descripcion}"> </span> </div>
+                <div class="report-detail"><strong>Fecha de creación:</strong> <span th:text="${informe.fechaCreacion}"> </span> </div>
+                <div class="report-detail"><strong>Profesional médico:</strong> <span th:text="${informe.profesionalMedico.usuario.nombreCompleto}"> </span> </div>
+                <div class="report-detail"><strong>Nº del documento de identidad:</strong> <span th:text="${informe.profesionalMedico.usuario.nifNie}" > </span> </div>
+                <div class="report-detail"><strong>Especialidad médica:</strong>  <span th:text="${informe.profesionalMedico.especialidadMedica.nombre}"> </span> </div>
+                <div class="report-detail"><strong>Nombre del centro médico:</strong> <span th:text="${informe.centroMedicoUsuario.nombreCompleto}"> </span></div>
+                <div class="report-detail"><strong>NIF del centro médico:</strong> <span th:text="${informe.centroMedicoUsuario.nifNie}"> </span></div>
+                <div class="report-detail"><strong>Dirección del centro médico:</strong> <span th:text="${informe.profesionalMedico.centroMedico.direccion}"> </span></div>
+                <div class="button-container">
+                    <form method="get" th:action="@{'/api/paciente/informes/' + ${informe.id}}" style="display: inline;">
+                        <button type="submit" class="button-view">Ver Detalles</button>
+                    </form>
+                </div>
+            </div>
+
+            <div th:if="${noHayInformes == true}" class="no-authorization-requests">
+                <p>No existe ningún informe que cumpla con los criterios establecidos</p>
+            </div>
+
+        </div>
+    </div>
+    <div th:replace="navbar::javascript"></div>
+
+    <div th:replace="footer :: footer"></div>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Regístrate como paciente</title>
+    <div th:include="navbar :: head (titulo='Regístrate como paciente')"></div>
+    <link rel="stylesheet" th:href="@{/css/custom/global/global.css}">
+    <link rel="stylesheet" th:href="@{/css/custom/guest_user/registro-form.css}">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+</head>
+<body>
+<div th:replace="navbar::menuBar"></div>
+<div class="page-container">
+    <div class="login-container">
+        <h1 class="form-title">Regístrate como paciente</h1>
+        <form th:action="@{/registro}" th:object="${registroData}" method="post">
+            <div class="form-group">
+                <label class="form-label" for="nombreCompleto">Nombre completo*</label>
+                <input type="text" id="nombreCompleto" class="form-input" th:field="*{nombreCompleto}" required placeholder="Pablo Hernandez Ripoll">
+            </div>
+            <div class="form-group">
+                <label class="form-label" for="fechaNacimiento">Fecha de nacimiento*</label>
+                <input type="date" id="fechaNacimiento" class="form-input" th:field="*{fechaNacimiento}" required>
+            </div>
+            <div class="form-group">
+                <label class="form-label" for="genero">Genero*</label>
+                <input type="text" id="genero" class="form-input" th:field="*{genero}" required placeholder="Hombre">
+            </div>
+            <div class="form-group">
+                <label class="form-label" for="nifNie">NIF/NIE*</label>
+                <input type="text" id="nifNie" class="form-input" th:field="*{nifNie}" required placeholder="43337475R">
+            </div>
+            <div class="form-group">
+                <label class="form-label" for="movil">Movil*</label>
+                <input type="text" id="movil" class="form-input" th:field="*{movil}" required placeholder="+34 647239815">
+            </div>
+            <div class="form-group">
+                <label class="form-label" for="pais">Pais*</label>
+                <input type="text" id="pais" class="form-input" th:field="*{pais}" required placeholder="Espana">
+            </div>
+            <div class="form-group">
+                <label class="form-label" for="email">Email*</label>
+                <input type="email" id="email" class="form-input" th:field="*{email}" required placeholder="user@gmail.com">
+            </div>
+            <div class="form-group">
+                <label class="form-label" for="contrasenya">Contrasenya*</label>
+                <input type="password" id="contrasenya" class="form-input" th:field="*{contrasenya}" required placeholder="***********">
+            </div>
+            <div class="form-group">
+                <label class="form-label" for="confirmarContrasenya">Confirmar contrasenya*</label>
+                <input type="password" id="confirmarContrasenya" class="form-input" th:field="*{confirmarContrasenya}" required placeholder="***********">
+            </div>
+            <button type="submit" class="submit-button">Aceptar</button>
+            <div th:if="${error != null}" class="error-message" th:text="${error}"></div>
+        </form>
+    </div>
+</div>
+<div th:replace="navbar::javascript"></div>
+
+<div th:replace="footer :: footer"></div>
+
+<script>
+    lucide.createIcons();
+</script>
+</body>
+</html>

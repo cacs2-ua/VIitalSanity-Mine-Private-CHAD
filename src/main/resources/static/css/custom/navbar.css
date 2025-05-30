@@ -1,0 +1,166 @@
+.navbar-body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Main navbar styling with a modern gradient and shadow */
+.custom-nav {
+    background: linear-gradient(135deg, #6B00F5, #8E2DE2);
+    color: #ffffff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Container for the brand and toggler */
+.custom-nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+}
+
+/* Brand styling */
+.custom-nav-brand {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: #ffffff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.custom-nav-brand:hover {
+    color: #FFD700;
+}
+
+/* Toggler (burger) button styling */
+.custom-nav-toggler {
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 24px;
+    position: relative;
+    z-index: 2;
+    transition: transform 0.3s ease;
+}
+
+.custom-nav-toggler:focus {
+    outline: none;
+}
+
+/* Hamburger icon: using pseudo-elements for smooth animation */
+.custom-nav-toggler-icon {
+    position: relative;
+    display: block;
+    width: 30px;
+    height: 3px;
+    background-color: #ffffff;
+    border-radius: 2px;
+    transition: background-color 0.3s ease;
+}
+
+.custom-nav-toggler-icon::before,
+.custom-nav-toggler-icon::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    width: 30px;
+    height: 3px;
+    background-color: #ffffff;
+    border-radius: 2px;
+    transition: transform 0.3s ease, top 0.3s ease, opacity 0.3s ease;
+}
+
+.custom-nav-toggler-icon::before {
+    top: -8px;
+}
+
+.custom-nav-toggler-icon::after {
+    top: 8px;
+}
+
+/* When toggler is active, transform into a cross */
+.custom-nav-toggler-active .custom-nav-toggler-icon {
+    background-color: transparent;
+}
+
+.custom-nav-toggler-active .custom-nav-toggler-icon::before {
+    transform: rotate(45deg);
+    top: 0;
+}
+
+.custom-nav-toggler-active .custom-nav-toggler-icon::after {
+    transform: rotate(-45deg);
+    top: 0;
+    opacity: 1;
+}
+
+/* Navigation menu container */
+.custom-nav-menu {
+    display: none;
+    background: linear-gradient(135deg, #6B00F5, #8E2DE2);
+    width: 100%;
+}
+
+/* Active state for mobile menu */
+.custom-nav-menu-active {
+    display: block;
+}
+
+/* Navigation list styling */
+.custom-nav-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Navigation item (mobile view) */
+.custom-nav-item {
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Navigation link styling */
+.custom-nav-link {
+    display: block;
+    padding: 1rem 2rem;
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 1rem;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+.custom-nav-link:hover,
+.custom-nav-link.active {
+    background: rgba(255, 255, 255, 0.15);
+    color: #FFD700;
+}
+
+/* Desktop view styling */
+@media (min-width: 768px) {
+    .custom-nav-container {
+        padding: 1rem 3rem;
+    }
+    .custom-nav-toggler {
+        display: none;
+    }
+    .custom-nav-menu {
+        display: block !important;
+        background: none;
+    }
+    .custom-nav-list {
+        flex-direction: row;
+        align-items: center;
+    }
+    .custom-nav-item {
+        border: none;
+    }
+    .custom-nav-link {
+        padding: 1rem 1.5rem;
+    }
+    .custom-nav-link:hover,
+    .custom-nav-link.active {
+        background: rgba(255, 255, 255, 0.15);
+        color: #FFD700;
+    }
+}

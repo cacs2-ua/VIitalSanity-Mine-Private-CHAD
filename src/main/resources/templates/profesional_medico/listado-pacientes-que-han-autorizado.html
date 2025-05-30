@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Listado de los pacientes que han autorizado el acceso a su historial</title>
+  <div th:include="navbar :: head (titulo='Listado de los pacientes que han autorizado el acceso a su historial')"></div>
+  <link rel="stylesheet" th:href="@{/css/custom/global/global.css}">
+  <link rel="stylesheet" th:href="@{/css/custom/profesional_medico/listado-pacientes-que-han-autorizado.css}">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+</head>
+<body>
+  <div th:replace="navbar::menuBar"></div>
+  <div class="body">
+    <div class="page-container">
+      <!-- Modified header with separate styling for label and DNI -->
+      <h2 class="header"><strong>Listado de los pacientes que han autorizado el acceso a su historial</strong></h2>
+
+      <!-- Filter Section -->
+      <form th:action="@{/api/profesional-medico/pacientes-que-han-autorizado}" method="get">
+        <div class="filter-section">
+          <div class="input-group">
+            <label for="nombre-paciente">Nombre</label>
+            <input th:value="${pacienteNombre}" name="pacienteNombre" type="text" id="nombre-paciente" class="filter-input">
+          </div>
+          <div class="input-group">
+            <label for="nif-nie">NIF/NIE</label>
+            <input th:value="${nifNiePaciente}" name="nifNiePaciente" type="text" id="nif-nie" class="filter-input">
+          </div>
+          <div class="input-group">
+            <label for="edad-minima">Edad Mínima</label>
+            <input th:value="${edadMinima}" name="edadMinima" type="number" min="0" max="150" id="edad-minima" class="filter-input">
+          </div>
+          <div class="input-group">
+            <label for="edad-maxima">Edad Máxima</label>
+            <input th:value="${edadMaxima}" name="edadMaxima" type="number" min="0" max="150" id="edad-maxima" class="filter-input">
+          </div>
+          <button type="submit" class="button-primary">Aplicar filtros</button>
+        </div>
+      </form>
+
+
+      <!-- Report Cards -->
+      <div th:each="paciente: ${pacientes}" class="report-card">
+        <div class="report-patient"><strong>Nombre del paciente:</strong> <span th:text="${paciente.usuario.nombreCompleto}" class="report-patient-name"></span></div>
+        <div class="report-detail"><strong>NIF: </strong> <span th:text="${paciente.usuario.nifNie}"> </span> </div>
+        <div class="report-detail"><strong>Género: </strong> <span th:text="${paciente.genero}"> </span> </div>
+        <div class="report-detail"><strong>Edad: </strong> <span th:text="${paciente.edad}"> </span> </div>
+        <div class="button-container">
+          <form th:action="@{'/api/profesional-medico/pacientes/' + ${paciente.id} + '/informes'}" method="get">
+            <button type="submit" class="button-access-record">Acceder al historial</button>
+          </form>
+        </div>
+      </div>
+
+      <div th:if="${noHayPacientes == true}" class="no-authorization-requests">
+        <p>No existe ningún paciente que cumpla con los criterios establecidos</p>
+      </div>
+
+    </div>
+  </div>
+  <div th:replace="navbar::javascript"></div>
+
+  <div th:replace="footer :: footer"></div>
+
+  <script>
+    lucide.createIcons();
+  </script>
+</body>
+</html>

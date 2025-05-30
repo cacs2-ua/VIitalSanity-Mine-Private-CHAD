@@ -1,0 +1,107 @@
+.body {
+    background-color: #DBD5FF;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    padding: 1rem;
+}
+
+/* Typography */
+.page-title {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    text-align: center;
+    text-decoration: underline;
+}
+
+/* Form container */
+.form-container {
+    background-color: #6528BF;
+    border-radius: 0.5rem;
+    width: 100%;
+    max-width: 35rem;
+    padding: 1rem;
+    color: white;
+}
+
+/* Form sections */
+.form-section {
+    margin-bottom: 1.5rem;
+}
+
+.form-field {
+    margin-bottom: 1rem;
+}
+
+.form-label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+}
+
+.required::before {
+    content: "*";
+    color: white;
+}
+
+.form-input, .form-textarea {
+    width: 100%;
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+    border: none;
+    background-color: #F5F3FF;
+}
+
+.form-textarea {
+    min-height: 5rem;
+    resize: vertical;
+}
+
+/* Modified: Underline the entire ID block and combine the text */
+.form-id {
+    display: flex;
+    margin-bottom: 1rem;
+    justify-content: center;
+    text-decoration: underline; /* Underlines all content including spaces */
+}
+
+/* New combined ID class; the <strong> tag inside ensures bold for "Id. informe:" */
+.form-id-combined {
+    font-size: 1.3rem;
+}
+
+/* Submit button */
+.submit-container {
+    text-align: center;
+    margin-top: 1.5rem;
+}
+
+.submit-button {
+    background-color: #4643FF;
+    color: white;
+    border: none;
+    padding: 0.5rem 2rem;
+    border-radius: 1.5rem;
+    font-size: 1rem;
+    cursor: pointer;
+    font-weight: bold;
+    /* NEW: Added transition for hover effect */
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.submit-button:hover {
+    background-color: #303f9f;
+    transform: scale(1.05);
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+    .form-container {
+        padding: 0.75rem;
+    }
+
+    .page-title {
+        font-size: 1.5rem;
+    }
+}

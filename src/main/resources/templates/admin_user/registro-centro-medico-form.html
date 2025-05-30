@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrar un nuevo centro medico</title>
+    <div th:include="navbar :: head (titulo='Registrar un nuevo centro medico')"></div>
+    <link rel="stylesheet" th:href="@{/css/custom/global/global.css}">
+    <link rel="stylesheet" th:href="@{/css/custom/admin_user/registro-centro-medico-form.css}">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+</head>
+<body>
+<div th:replace="navbar::menuBar"></div>
+<div class="page-container">
+    <div class="form-container">
+        <h1 class="form-title">Registrar un nuevo centro medico</h1>
+        <form th:action="@{/api/admin/registro-centro-medico}" th:object="${registroCentroMedicoData}" method="post">
+            <div class="form-group">
+                <label class="form-label" for="nombreCompleto">Nombre del centro medico*</label>
+                <input type="text" id="nombreCompleto" class="form-input" th:field="*{nombreCompleto}" required placeholder="Centro Medico Adeslas">
+            </div>
+            <div class="form-group">
+                <label class="form-label" for="nifNie">NIF*</label>
+                <input type="text" id="nifNie" class="form-input" th:field="*{nifNie}" required placeholder="B12345678">
+            </div>
+            <div class="form-group">
+                <label class="form-label" for="movil">Movil*</label>
+                <input type="text" id="movil" class="form-input" th:field="*{movil}" required placeholder="947239815">
+            </div>
+            <div class="form-group">
+                <label class="form-label" for="provincia">Provincia*</label>
+                <input type="text" id="provincia" class="form-input" th:field="*{provincia}" required placeholder="Alicante">
+            </div>
+            <div class="form-group">
+                <label class="form-label" for="municipio">Municipio*</label>
+                <input type="text" id="municipio" class="form-input" th:field="*{municipio}" required placeholder="San Vicente del Raspeig">
+            </div>
+            <div class="form-group">
+                <label class="form-label" for="codigoPostal">Codigo Postal*</label>
+                <input type="text" id="codigoPostal" class="form-input" th:field="*{codigoPostal}" required placeholder="03690">
+            </div>
+            <div class="form-group">
+                <label class="form-label" for="iban">IBAN*</label>
+                <input type="text" id="iban" class="form-input" th:field="*{iban}" required placeholder="ES87 3183 4033 1194 3731 1211">
+            </div>
+            <div class="form-group">
+                <label class="form-label" for="ccc">Código de Cuenta de Cotización (ccc)*</label>
+                <input type="text" id="ccc" class="form-input" th:field="*{ccc}" required placeholder="03/987654321">
+            </div>
+            <div class="form-group">
+                <label class="form-label" for="direccion">Direccion*</label>
+                <input type="text" id="direccion" class="form-input" th:field="*{direccion}" required placeholder="Calle Pablo Iglesias N 27">
+            </div>
+            <div class="form-group">
+                <label class="form-label" for="email">Email*</label>
+                <input type="email" id="email" class="form-input" th:field="*{email}" required placeholder="adeslas@gmail.com">
+            </div>
+            <button type="submit" class="submit-button">Aceptar</button>
+        </form>
+    </div>
+</div>
+<div th:replace="navbar::javascript"></div>
+
+<div th:replace="footer :: footer"></div>
+
+<script>
+    lucide.createIcons();
+</script>
+
+
+</body>
+</html>

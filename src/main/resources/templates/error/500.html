@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ERROR HTTP 500 - Ha ocurrido un problema en la aplicación</title>
+    <div th:include="navbar :: head (titulo='ERROR HTTP 500 - Ha ocurrido un problema en la aplicación')"></div>
+    <link rel="stylesheet" th:href="@{/css/custom/error/500.css}">
+
+</head>
+<body>
+<div th:replace="navbar::menuBar"></div>
+<div class="body">
+    <main class="container" role="main">
+        <svg class="icono-medico" viewBox="0 0 148 104" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Icono de corazón y estetoscopio">
+            <!-- Estetoscopio -->
+            <path d="M23 24 v17 a28 28 0 0 0 56 0 V24" stroke="#8e44ad" stroke-width="2.3" fill="none"/>
+            <circle cx="23" cy="24" r="3.4" fill="#8e44ad" />
+            <circle cx="79" cy="24" r="3.4" fill="#8e44ad" />
+            <circle cx="51" cy="72" r="5.9" fill="#fff" stroke="#c281e7" stroke-width="2.2" />
+            <circle class="parpadeo" cx="51" cy="72" r="3" fill="#c281e7">
+                <animate attributeName="opacity" values="1;0.37;1" dur="1.4s" repeatCount="indefinite"/>
+            </circle>
+            <!-- Cable al corazón -->
+            <path d="M51 77 C61 93, 90 93, 103 70" stroke="#8e44ad" stroke-width="2.2" fill="none"/>
+            <!-- Corazón animado -->
+            <g>
+                <path class="corazon" d="M114 63 Q117.5 58, 121 63 Q126.5 71, 114 82 Q101.5 71, 107 63 Q110.5 58, 114 63 Z" fill="#f55951">
+                    <animateTransform attributeName="transform" type="scale" values="1;1.13;1" keyTimes="0;0.5;1" dur="1.05s" repeatCount="indefinite" additive="sum"/>
+                </path>
+                <text x="114" y="75" text-anchor="middle" font-weight="bold" font-family="Segoe UI, Roboto, Arial" font-size="1.9rem" fill="#fff" dominant-baseline="middle"></text>
+            </g>
+        </svg>
+        <div class="codigo-404">HTTP 500</div>
+        <h1 class="titulo-404">¡Oops! Ha ocurrido un error inesperado</h1>
+        <div class="subtitulo">Parece que necesitamos una receta nueva...
+            <br>
+            <br>
+
+            Nuestro equipo técnico se encuentra trabajando arduamente para solucionar el problema.
+            <br>
+            <br>
+            ¡Gracias por su paciencia!
+        </div>
+        <form th:action="@{/api/general/home}" method="get">
+            <button type="submit" class="boton-volver">
+                Volver a la página de inicio
+            </button>
+        </form>
+        <span class="pista">Si el problema persiste, puede contactar directamente con el soporte téncico desde la página de incio.</span>
+    </main>
+</div>
+<div th:replace="navbar::javascript"></div>
+
+</body>
+</html>

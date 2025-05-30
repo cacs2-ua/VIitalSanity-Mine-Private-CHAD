@@ -1,0 +1,63 @@
+# IntelliJ IDEA files
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# Maven files
+target/
+*.log
+
+# Eclipse files
+.classpath
+.project
+.settings/
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+
+# IDE specific files
+*.class
+
+# Spring Boot specific files
+*.jar
+*.war
+
+# Build directories
+build/
+out/
+
+# Temporary files
+*.tmp
+*.temp
+*.swp
+*.swo
+
+# User-specific files
+*.user
+*.orig
+*.bak
+*.swp
+*.swo
+
+# Gradle files (if you ever switch to Gradle)
+.gradle/
+build/
+
+# Logs
+logs/
+*.log
+
+
+
+# IntelliJ logs
+.idea/idea.log
+.idea/misc.xml
+.idea/modules.xml
+.idea/vcs.xml
+.idea/workspace.xml
+.idea/libraries
+
+.vscode/

@@ -1,0 +1,252 @@
+/* Global styles */
+html, body {
+    background-color: #DBD5FF;
+}
+
+/* CSS variables */
+:root {
+    --primary-bg: #DBD5FF;
+    --card-bg: #F5F3FF;
+    --text-color: #000000;
+    --link-color: blue;
+    --button-bg: #4643FF;
+    --button-text: #ffffff;
+}
+
+/* Containers para secciones principales */
+.body-principal,
+.body-firma {
+    background-color: #DBD5FF;
+    color: #000000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+}
+
+/* Typography */
+.page-title {
+    text-align: center;
+    margin: 1rem 0;
+    font-size: 1.75rem;
+    font-weight: bold;
+    text-decoration: underline;
+    margin-bottom: 1.85rem;
+}
+
+/* Form container y elementos */
+.form-container {
+    background-color: #6528BF;
+    border-radius: 0.5rem;
+    width: 100%;
+    max-width: 35rem;
+    padding: 1rem;
+    color: white;
+}
+.form-section {
+    margin-bottom: 1.5rem;
+}
+.form-field {
+    margin-bottom: 1rem;
+}
+.form-label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+}
+.required::before {
+    content: "*";
+    color: white;
+}
+
+.form-input, .form-textarea {
+    width: 100%;
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+    border: none;
+    background-color: #F5F3FF;
+    color: #000000;
+}
+
+.form-input::placeholder,
+.form-textarea::placeholder {
+    color: #888888;            /* o el gris que prefieras */
+}
+
+.form-textarea {
+    min-height: 5rem;
+    resize: vertical;
+}
+.form-id {
+    display: flex;
+    margin-bottom: 1rem;
+    justify-content: center;
+    text-decoration: underline;
+}
+.form-id-combined {
+    font-size: 1.3rem;
+}
+
+/* Submit button */
+.submit-container {
+    text-align: center;
+    margin-top: 1.5rem;
+}
+.submit-button {
+    background-color: #4643FF;
+    color: white;
+    border: none;
+    padding: 0.5rem 2rem;
+    border-radius: 1.5rem;
+    font-size: 1rem;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+.submit-button:hover {
+    background-color: #303f9f;
+    transform: scale(1.05);
+}
+
+/* Report card and related elements (para sección de firma) */
+.report-card {
+    background-color: var(--card-bg);
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    width: 100%;
+    max-width: 50rem;
+    box-shadow: 0 0.125rem 0.625rem rgba(0, 0, 0, 0.1);
+}
+.title-v1 {
+    text-align: center;
+    font-size: 1.3rem;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+    text-decoration: underline;
+}
+
+.report-section {
+    margin-bottom: 1rem;
+}
+
+.report-value {
+    display: inline;
+}
+
+.file-link {
+    color: var(--link-color);
+    text-decoration: underline;
+    margin: 0.75rem 0;
+    font-weight: bold;
+}
+.button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 1.5rem;
+}
+.back-button {
+    background-color: var(--button-bg);
+    color: var(--button-text);
+    border: none;
+    border-radius: 1.5rem;
+    padding: 0.5rem 2rem;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    margin-bottom: 0.65rem;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+.back-button:hover {
+    background-color: #3a42cc;
+    transform: scale(1.05);
+}
+.checkbox-container {
+    margin-top: 1rem;
+    display: flex;
+    align-items: center;
+    font-size: 1rem;
+}
+.checkbox-container input[type="checkbox"] {
+    margin-right: 0.5rem;
+    cursor: pointer;
+}
+
+/* Overlay and Spinner for AutoFirma */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    color: #fff;
+    font-size: 1.2rem;
+    padding: 1rem;
+    box-sizing: border-box;
+}
+.spinner {
+    border: 0.5rem solid #f3f3f3;
+    border-top: 0.5rem solid #3498db;
+    border-radius: 50%;
+    width: 3.75rem;
+    height: 3.75rem;
+    animation: spin 1s linear infinite;
+    margin-bottom: 1.25rem;
+}
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+    .form-container {
+        padding: 0.75rem;
+    }
+    .page-title {
+        font-size: 1.25rem;
+    }
+}
+@media (max-width: 37.5rem) {
+    .form-container {
+        padding: 0.75rem;
+    }
+    .page-title {
+        font-size: 1.25rem;
+    }
+    .report-card {
+        padding: 1rem;
+    }
+    .title-v1, .files-title {
+        font-size: 1.2rem;
+    }
+    .page-title {
+        font-size: 1.5rem;
+    }
+}
+@media (max-width: 768px) {
+    .overlay {
+        font-size: 1rem;
+        padding: 0.8rem;
+    }
+    .spinner {
+        width: 3rem;
+        height: 3rem;
+        border-width: 0.4rem;
+    }
+}
+@media (max-width: 480px) {
+    .overlay {
+        font-size: 0.9rem;
+        padding: 0.5rem;
+    }
+    .spinner {
+        width: 2.5rem;
+        height: 2.5rem;
+        border-width: 0.35rem;
+    }
+}

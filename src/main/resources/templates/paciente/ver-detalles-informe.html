@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Detalles del informe</title>
+  <div th:include="navbar :: head (titulo='Detalles de Informe')"></div>
+  <link rel="stylesheet" th:href="@{/css/custom/global/global.css}">
+  <link rel="stylesheet" th:href="@{/css/custom/paciente/ver-detalles-informe.css}">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+
+
+</head>
+<body>
+<div th:replace="navbar::menuBar"></div>
+  <div class="body">
+    <h1 class="page-title">Detalles del informe</h1>
+
+    <div class="report-card">
+      <!-- Modified: "Id. informe:" in bold and the number normal -->
+      <div class="report-id"><strong>Id. informe:</strong> <span th:text="${informe.identificadorPublico}" class="report-number"></span></div>
+
+      <div class="report-section">
+        <div class="report-label">Título: </div>
+        <div th:text="${informe.titulo}" class="report-value"></div>
+      </div>
+
+      <div class="report-section">
+        <div class="report-label">Descripción: </div>
+        <div th:text="${informe.descripcion}" class="report-value"> </div>
+      </div>
+
+      <div class="report-section">
+        <div class="report-label">Observaciones: </div>
+        <div th:text="${informe.observaciones}" class="report-value"> </div>
+      </div>
+
+      <div class="report-section">
+        <div class="report-label">Fecha de creación: </div>
+        <div th:text="${informe.fechaCreacion}" class="report-value"> </div>
+      </div>
+
+      <div class="report-section">
+        <div class="report-label">Nombre del paciente: </div>
+        <div th:text="${informe.paciente.usuario.nombreCompleto}" class="report-value"> </div>
+      </div>
+
+      <div class="report-section">
+        <div class="report-label">Edad del paciente: </div>
+        <div th:text="${informe.paciente.edad}" class="report-value"> </div>
+      </div>
+
+      <div class="report-section">
+        <div class="report-label">Nº del documento de identidad del paciente: </div>
+        <div th:text="${informe.paciente.usuario.nifNie}" class="report-value"> </div>
+      </div>
+
+      <div class="report-section">
+        <div class="report-label">Nombre del profesional médico: </div>
+        <div th:text="${informe.profesionalMedico.usuario.nombreCompleto}" class="report-value"> </div>
+      </div>
+
+      <div class="report-section">
+        <div class="report-label">Especialidad médica: </div>
+        <div th:text="${informe.profesionalMedico.especialidadMedica.nombre}" class="report-value"> </div>
+      </div>
+
+      <div class="report-section">
+        <div class="report-label">Nº del documento de identidad del profesional médico: </div>
+        <div th:text="${informe.profesionalMedico.usuario.nifNie}" class="report-value"> </div>
+      </div>
+
+      <div class="report-section">
+        <div class="report-label">Nombre del centro médico: </div>
+        <div th:text="${informe.centroMedicoUsuario.nombreCompleto}" class="report-value"> </div>
+      </div>
+
+      <div class="report-section">
+        <div class="report-label">NIF del centro médico: </div>
+        <div th:text="${informe.centroMedicoUsuario.nifNie}" class="report-value"> </div>
+      </div>
+
+      <div class="report-section">
+        <div class="report-label">Provincia del centro médico: </div>
+        <div th:text="${informe.centroMedicoUsuario.provincia}" class="report-value"> </div>
+      </div>
+
+      <div class="report-section">
+        <div class="report-label">Municipio del centro médico: </div>
+        <div th:text="${informe.centroMedicoUsuario.municipio}" class="report-value"> </div>
+      </div>
+
+      <div class="report-section">
+        <div class="report-label">Dirección del centro médico: </div>
+        <div th:text="${informe.profesionalMedico.centroMedico.direccion}" class="report-value"> </div>
+      </div>
+
+      <br>
+      <hr>
+      <br>
+      <div class="report-id"><strong>Documentos del informe</strong></div>
+
+      <div th:if="${noHayDocumentos == true}" class="no-documents-message">
+        <p>No existe actualmente ningún documento asociado a este informe médico</p>
+      </div>
+
+      <div th:if="${noHayDocumentos == false}" class="files-section">
+        <br>
+        <h2 class="files-title">Documentos previamente adjuntados</h2>
+
+        <div th:each="documento: ${documentos}" >
+          <a th:href="${documento.urlPrefirmada}" th:text="${documento.nombre}" target="_blank" class="file-link"></a>
+        </div>
+        <br>
+      </div>
+
+    </div>
+
+  </div>
+<div th:replace="navbar::javascript"></div>
+
+
+<div th:replace="footer :: footer"></div>
+
+<script>
+  lucide.createIcons();
+</script>
+</body>
+</html>

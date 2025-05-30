@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Éxito en la cofirma de la autorización</title>
+    <div th:include="navbar :: head (titulo='Éxito en la cofirma de la autorización')"></div>
+    <link rel="stylesheet" th:href="@{/css/custom/global/global.css}">
+    <link rel="stylesheet" th:href="@{/css/custom/paciente/descargar-pdf-autorizacion-cofirmada.css}">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+</head>
+<body>
+<div th:replace="navbar::menuBar"></div>
+<div class="body">
+    <h1 class="page-title">Firma de la autorización</h1>
+
+    <div class="report-card">
+        <div class="pop-up-title-v1"><strong>Autorización firmada con éxito</strong></div>
+
+        <div class="report-section">
+            <div class="report-value">
+                Su autorización ha sido firmada con éxito.
+                <br>
+                <br>
+                Ahora el profesional médico tendrá acceso a su historial clínico centralizado, lo que le permitirá acceder
+                a los informes y documentos médicos de otros profesionales autorizados, además de poder agregar nuevos informes y documentos
+                a tu historial clínico. Todo esto le servirá a usted como paciente para disfrutar de una experiencia
+                más ágil y satisfactoria en su atención médica.
+
+                <br>
+                <br>
+                A continuación, puede descargar su autorización firmada en el siguiente <a class="file-link" th:href="${urlPrefirmada}" target="_blank">enlace</a>.
+
+            </div>
+        </div>
+
+    </div>
+</div>
+<div th:replace="navbar::javascript"></div>
+
+<div th:replace="footer :: footer"></div>
+
+<script>
+    lucide.createIcons();
+</script>
+</body>
+</html>

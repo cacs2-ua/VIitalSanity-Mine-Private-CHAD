@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="head (titulo)">
+    <meta charset="UTF-8" />
+    <!-- Meta viewport for proper mobile behavior -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title th:text="${titulo}"></title>
+    <!-- Link to the custom navbar CSS -->
+    <link rel="stylesheet" th:href="@{/css/custom/global/global.css}">
+    <link rel="stylesheet" th:href="@{/css/custom/navbar.css}" />
+    <!-- Agregamos esta regla para desktop: -->
+    <style>
+        @media (min-width: 768px) {
+            .custom-nav-list .logout {
+                margin-left: auto;
+            }
+        }
+    </style>
+</head>
+<body class="navbar-body">
+<div th:fragment="menuBar">
+    <nav class="custom-nav">
+        <div class="custom-nav-container">
+            <!-- Logo or application name -->
+            <a class="custom-nav-brand" th:href="@{/api/general/home}" onclick="highlightLink(this)">VitalSanity</a>
+            <!-- Burger menu toggle button -->
+            <button class="custom-nav-toggler" id="customNavToggler" aria-label="Toggle navigation">
+                <span class="custom-nav-toggler-icon"></span>
+            </button>
+        </div>
+        <!-- Navigation links container -->
+        <div class="custom-nav-menu" id="customNavMenu">
+            <ul class="custom-nav-list">
+                <!-- Guest User -->
+                <li class="custom-nav-item" th:if="${usuario == null}">
+                    <a class="custom-nav-link" th:href="@{/login}" onclick="highlightLink(this)">Iniciar Sesion</a>
+                </li>
+                <li class="custom-nav-item" th:if="${usuario == null}">
+                    <a class="custom-nav-link" th:href="@{/registro}" onclick="highlightLink(this)">Registrarse</a>
+                </li>
+                <!-- Admin User -->
+                <li class="custom-nav-item" th:if="${usuario != null and usuario.tipoId == 1}">
+                    <a class="custom-nav-link" th:href="@{/api/admin/registro-centro-medico}" onclick="highlightLink(this)">Registrar Centro Médico</a>
+                </li>
+
+                <!-- Medical Center User -->
+                <li class="custom-nav-item" th:if="${usuario != null and usuario.tipoId == 2 and usuario.primerAcceso == false}">
+                    <a class="custom-nav-link" th:href="@{/api/centro-medico/profesionales-medicos}" onclick="highlightLink(this)">Registrar Profesional Médicos</a>
+                </li>
+                <!-- Professional User -->
+                <li class="custom-nav-item" th:if="${usuario != null and usuario.tipoId == 3 and usuario.primerAcceso == false}">
+                    <a class="custom-nav-link" th:href="@{'/api/profesional-medico/buscar-paciente'}" onclick="highlightLink(this)">Solicitar Autorizacion</a>
+                </li>
+                <li class="custom-nav-item" th:if="${usuario != null and usuario.tipoId == 3 and usuario.primerAcceso == false}">
+                    <a class="custom-nav-link" th:href="@{'/api/profesional-medico/pacientes-que-han-autorizado'}" onclick="highlightLink(this)">Pacientes que han autorizado</a>
+                </li>
+                <li class="custom-nav-item" th:if="${usuario != null and usuario.tipoId == 3 and usuario.primerAcceso == false}">
+                    <a class="custom-nav-link" th:href="@{'/api/profesional-medico/solicitudes-autorizacion-pendientes'}" onclick="highlightLink(this)">Solicitudes de autorización pendientes</a>
+                </li>
+                <li class="custom-nav-item" th:if="${usuario != null and usuario.tipoId == 3 and usuario.primerAcceso == false}">
+                    <a class="custom-nav-link" th:href="@{'/api/profesional-medico/pacientes-que-han-desautorizado'}" onclick="highlightLink(this)">Pacientes que han desautorizado</a>
+                </li>
+                <!-- Patient User -->
+                <li class="custom-nav-item" th:if="${usuario != null and usuario.tipoId == 4}">
+                    <a class="custom-nav-link" th:href="@{'/api/paciente/informes'}" onclick="highlightLink(this)">Mis informes</a>
+                </li>
+                <li class="custom-nav-item" th:if="${usuario != null and usuario.tipoId == 4}">
+                    <a class="custom-nav-link" th:href="@{'/api/paciente/profesionales-autorizados'}" onclick="highlightLink(this)">Profesionales autorizados</a>
+                </li>
+                <li class="custom-nav-item" th:if="${usuario != null and usuario.tipoId == 4}">
+                    <a class="custom-nav-link" th:href="@{'/api/paciente/notificaciones'}" onclick="highlightLink(this)">Solicitudes de autorización</a>
+                </li>
+                <!-- Cerrar sesión: se mostrará para cualquier usuario logueado y se posicionará a la derecha en desktop -->
+                <li class="custom-nav-item logout" th:if="${usuario != null}">
+                    <a class="custom-nav-link" th:href="@{/logout}" onclick="highlightLink(this)">Cerrar sesión</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div>
+
+<div th:fragment="javascript">
+    <script>
+        // Wait until the DOM content is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            var toggler = document.getElementById('customNavToggler');
+            var menu = document.getElementById('customNavMenu');
+            toggler.addEventListener('click', function() {
+                menu.classList.toggle('custom-nav-menu-active');
+                toggler.classList.toggle('custom-nav-toggler-active');
+            });
+            // Restore active link state (if any)
+            var activeLinkIndex = localStorage.getItem('activeLinkIndex');
+            if (activeLinkIndex !== null) {
+                var links = document.querySelectorAll('.custom-nav-link, .custom-nav-brand');
+                var activeLink = links[activeLinkIndex];
+                if (activeLink) {
+                    activeLink.classList.add('active');
+                }
+            }
+        });
+
+        // Function to highlight clicked link and store its index
+        function highlightLink(element) {
+            var links = document.querySelectorAll('.custom-nav-link, .custom-nav-brand');
+            links.forEach(function(link) {
+                link.classList.remove('active');
+            });
+            element.classList.add('active');
+            var linksArray = Array.from(document.querySelectorAll('.custom-nav-link, .custom-nav-brand'));
+            var index = linksArray.indexOf(element);
+            localStorage.setItem('activeLinkIndex', index);
+        }
+    </script>
+</div>
+</body>
+</html>

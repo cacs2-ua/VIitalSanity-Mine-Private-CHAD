@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrar Profesionales Medicos</title>
+    <div th:include="navbar :: head (titulo='Registrar Profesionales Medicos')"></div>
+    <link rel="stylesheet" th:href="@{/css/custom/global/global.css}">
+    <link rel="stylesheet" th:href="@{/css/custom/centro_medico/registro-profesionales-medicos.css}">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+<div th:replace="navbar::menuBar"></div>
+<div class="page-container">
+    <div class="form-container">
+        <h1 class="form-title">Registro de Profesionales Medicos</h1>
+        <p class="form-description">
+            Adjunte un fichero CSV con los datos de los profesionales medicos que desea registrar para su centro
+        </p>
+        <div th:if="${error}" class="error-message" th:text="${error}"></div>
+        <form th:action="@{/api/centro-medico/profesionales-medicos}" th:object="${registroProfesionalesMedicosData}" method="post" enctype="multipart/form-data">
+            <label class="attachment-button">
+                Adjuntar Fichero CSV
+                <span class="attachment-icon">▼</span>
+                <input type="file" th:field="*{csvFile}" accept=".csv" onchange="mostrarNombre(this)">
+            </label>
+            <div id="nombreFichero" class="file-name"></div>
+            <br>
+            <button type="submit" class="submit-button">Registrar</button>
+        </form>
+    </div>
+</div>
+<div th:replace="navbar::javascript"></div>
+
+<div th:replace="footer :: footer"></div>
+
+<script>
+    lucide.createIcons();
+</script>
+
+<script>
+    function mostrarNombre(input) {
+        var nombre = input.files[0] ? input.files[0].name : "";
+        document.getElementById("nombreFichero").innerText = nombre;
+    }
+</script>
+</body>
+</html>

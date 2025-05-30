@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Firmar autorizacion</title>
+    <div th:include="navbar :: head (titulo='Firmar autorizacion')"></div>
+    <link rel="stylesheet" th:href="@{/css/custom/global/global.css}">
+    <link rel="stylesheet" th:href="@{/css/custom/profesional_medico/autofirma-autorizacion.css}">
+</head>
+<body>
+<div th:replace="navbar::menuBar"></div>
+<div class="body">
+    <h1 class="page-title">Firma de la autorización</h1>
+
+    <div class="report-card">
+        <div class="pop-up-title-v1"><strong>Instrucciones</strong></div>
+
+        <div class="report-section">
+            <div class="report-value">
+                A continuación se va a proceder a la firma de la autorización. Para ello, es necesario tener instalado el programa de AutoFirma. Cuando haya leído toda la información, pulse sobre el botón de "Firmar y enviar".
+                Tras haber pulsado sobre dicho botón se abrirá en el navegador el programa de AutoFirma, el cual le solicitará elegir el certificado con el cual desea usted firmar la autorización. Una vez elegido el certificado, se realizará de forma
+                automática con el proceso de firma. Cuando este proceso haya finalizado, usted podrá descargarse una copia de la autorización firmada.
+            </div>
+        </div>
+
+        <br>
+
+        <div class="pop-up-title-v1"><strong>Información básica sobre protección de datos:</strong></div>
+
+        <div class="report-section">
+            <div class="report-value">
+
+                <strong>Responsable: </strong> VitalSanity, S.A. dentro del ámbito sanitario.
+
+                <br>
+                <br>
+
+                <strong>Propósito: </strong> Administrar la gestión de la solicitud de autorización al historial médico centralizado de uno de los pacientes registrados en la aplicación.
+
+                <br>
+                <br>
+
+                <strong>Transferencia de datos: </strong>  Es imprescindible comunicar la información de contacto y todos los datos de la autorización al paciente en específico para que este pueda tomar la decisión de autorizar o denegar la solicitud de la autorización.
+
+                <br>
+                <br>
+
+                <strong>Derechos: </strong>  Una vez el paciente haya autorizado la solicitud, se garantiza el derecho de acceder a todas las entradas dentro del historial médico del paciente. Asimismo, se garantiza el poder agregar nuevas entradas
+                dentro del historial del paciente, así como el poder modificar las entradas propias que usted como profesional médico haya agregado con anterioridad.
+                Del mismo modo, se garantiza que toda la información proporcionada del paciente es auténtica, precisa y de su legítima propiedad y/o de terceras personas (siempre y cuando el paciente lo haya autorizado).
+
+                <br>
+                <br>
+
+                Para conocer el procedimiento para ejercer estos derechos y obtener detalles adicionales, consulte nuestra <a class="file-link" href="#" target="_blank">política de privacidad</a>.
+
+                <br>
+                <br>
+                <br>
+
+                <hr>
+
+
+
+                <div class="checkbox-container">
+                    <input type="checkbox" id="accept" name="accept">
+                    <label for="accept">He leído y comprendido  la información expuesta en materia de protección de datos.</label>
+                </div>
+
+                <div class="checkbox-container">
+                    <input type="checkbox" id="remember-me" name="accept">
+                    <label for="remember-me">No volver a mostrar este mensaje.</label>
+                </div>
+
+
+
+            </div>
+        </div>
+
+
+    </div>
+
+    <div class="button-container">
+
+    <div class="button-container">
+        <button type="button" onclick="onClickFirmarAutorizacion()" class="back-button">Firmar y Enviar</button>
+    </div>
+</div>
+</div>
+<div th:replace="navbar::javascript"></div>
+</body>
+</html>

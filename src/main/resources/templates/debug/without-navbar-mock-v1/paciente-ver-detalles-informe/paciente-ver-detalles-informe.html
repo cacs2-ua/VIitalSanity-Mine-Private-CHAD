@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Detalles del informe</title>
+  <style>
+    /* Custom CSS styles */
+    :root {
+      --primary-bg: #DBD5FF;
+      --card-bg: #F5F3FF;
+      --text-color: #000000;
+      --link-color: blue;
+      --button-bg: #4643FF;
+      --button-text: #ffffff;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body {
+      background-color: var(--primary-bg);
+      color: var(--text-color);
+      padding: 1rem;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .page-title {
+      text-align: center;
+      margin: 1rem 0;
+      font-size: 1.5rem;
+      font-weight: bold;
+      text-decoration: underline;
+      margin-bottom: 1.5rem;
+    }
+
+    .report-card {
+      background-color: var(--card-bg);
+      border-radius: 0.75rem;
+      padding: 1.5rem;
+      width: 100%;
+      max-width: 50rem;
+      box-shadow: 0 0.125rem 0.625rem rgba(0, 0, 0, 0.1);
+    }
+
+    /* Modified: Underline the entire "Id. informe" text */
+    .report-id {
+      text-align: center;
+      font-size: 1.5rem;
+      font-weight: bold;
+      margin-bottom: 1.5rem;
+      text-decoration: underline; /* Underlines entire text including spaces */
+    }
+    
+    /* New: Ensures the number appears normal */
+    .report-number {
+      font-weight: normal;
+    }
+
+    .report-section {
+      margin-bottom: 1rem;
+    }
+
+    .report-label {
+      font-weight: bold;
+      display: inline;
+    }
+
+    .report-value {
+      display: inline;
+    }
+
+    .files-section {
+      margin-top: 1.25rem;
+      border: 0.1rem solid black;
+      text-align: center;
+      background-color: #EBF6FF;
+      width: 70%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .files-title {
+      font-size: 1.25rem;
+      font-weight: bold;
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+
+    .file-link {
+      display: block;
+      color: var(--link-color);
+      text-decoration: underline;
+      margin: 0.75rem 0;
+      font-weight: bold;
+    }
+
+    .button-container {
+      display: flex;
+      justify-content: center;
+      margin-top: 1.5rem;
+    }
+
+    .back-button {
+      background-color: var(--button-bg);
+      color: var(--button-text);
+      border: none;
+      border-radius: 1.5rem;
+      padding: 0.5rem 2rem;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+      margin-bottom: 0.65rem;
+      /* Modified: Added transform transition */
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+    .back-button:hover {
+      background-color: #3a42cc;
+      transform: scale(1.05);
+    }
+
+    @media (max-width: 37.5rem) {
+      .report-card {
+        padding: 1rem;
+      }
+      
+      .page-title, .report-id, .files-title {
+        font-size: 1.2rem;
+      }
+
+      .files-section {
+        width: 100%;
+    }
+
+    }
+  </style>
+</head>
+<body>
+  <h1 class="page-title">Detalles del informe</h1>
+  
+  <div class="report-card">
+    <!-- Modified: "Id. informe:" in bold and the number normal -->
+    <div class="report-id"><strong>Id. informe:</strong> <span class="report-number">20939676</span></div>
+    
+    <div class="report-section">
+      <div class="report-label">Título:</div>
+      <div class="report-value"> Resonancia Magnética</div>
+    </div>
+    
+    <div class="report-section">
+      <div class="report-label">Descripción:</div>
+      <div class="report-value"> Informe de resonancia magnética solicitado para evaluar posibles lesiones traumáticas del sistema músculo-esquelético, realizado en el centro médico Vithas Alicante por el Dr. Juan Martínez Fernández, especialista en Traumatología.</div>
+    </div>
+    
+    <div class="report-section">
+      <div class="report-label">Observaciones:</div>
+      <div class="report-value"> El informe muestra hallazgos compatibles con el diagnóstico inicial. Se recomienda complementar con exploración clínica y posibles pruebas adicionales si los síntomas persisten o se agravan.</div>
+    </div>
+    
+    <div class="report-section">
+      <div class="report-label">Fecha:</div>
+      <div class="report-value"> 17/12/2024 17:45</div>
+    </div>
+    
+    <div class="report-section">
+      <div class="report-label">Centro médico:</div>
+      <div class="report-value"> Vithas Alicante</div>
+    </div>
+    
+    <div class="report-section">
+      <div class="report-label">Profesional médico:</div>
+      <div class="report-value"> Juan Martínez Fernández</div>
+    </div>
+    
+    <div class="report-section">
+      <div class="report-label">Especialidad médica:</div>
+      <div class="report-value"> Traumatología</div>
+    </div>
+    
+    <div class="report-section">
+      <div class="report-label">Provincia:</div>
+      <div class="report-value"> Alicante</div>
+    </div>
+    
+    <div class="report-section">
+      <div class="report-label">Municipio:</div>
+      <div class="report-value"> San Vicente del Raspeig</div>
+    </div>
+    
+    <div class="files-section">
+      <br>
+      <h2 class="files-title">Ficheros adjuntos</h2>
+      
+      <a href="#" class="file-link">Imagenes_RMN.pdf</a>
+      <a href="#" class="file-link">Diagnostico_Preliminar.pdf</a>
+      <a href="#" class="file-link">Recomendaciones_Clinicas.pdf</a>
+      <a href="#" class="file-link">Analisis_Comparativo.pdf</a>
+      <br>
+    </div>
+    
+  </div>
+          
+  <div class="button-container">
+    <button class="back-button">Volver</button>
+  </div>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Informe firmado y subido con éxito</title>
+    <div th:include="navbar :: head (titulo='Informe firmado y subido con éxito')"></div>
+    <link rel="stylesheet" th:href="@{/css/custom/global/global.css}">
+    <link rel="stylesheet" th:href="@{/css/custom/profesional_medico/descargar-pdf-autorizacion-firmada.css}">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+<div th:replace="navbar::menuBar"></div>
+<div class="body">
+    <h1 class="page-title">Firma del informe</h1>
+
+    <div class="report-card">
+        <div class="pop-up-title-v1"><strong>Informe firmado y subido con éxito</strong></div>
+
+        <div class="report-section">
+            <div class="report-value">
+                Su informe ha sido firmado con éxito y se ha incluido dentro del historial clínico del paciente.
+                <br>
+                <br>
+
+                A continuación, puede descargar el documento firmado asociado a su informe en el siguiente <a class="file-link" th:href="${urlPrefirmada}" target="_blank">enlace</a>.
+
+            </div>
+        </div>
+
+    </div>
+</div>
+<div th:replace="navbar::javascript"></div>
+
+<div th:replace="footer :: footer"></div>
+
+<script>
+    lucide.createIcons();
+</script>
+</body>
+</html>

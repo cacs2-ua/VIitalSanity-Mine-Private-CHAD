@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pop Up Cofirma Autorizacion</title>
+    <link rel="stylesheet" th:href="@{/css/custom/global/global.css}">
+    <link rel="stylesheet" th:href="@{/css/custom/paciente/pop-up-autofirma-autorizacion.css}">
+
+    <script th:inline="javascript">
+        const contextPath = /*[[${contextPath}]]*/ '';
+    </script>
+
+    <!-- Cargamos autoscript.js (JavaScript de despliegue de @firma) -->
+    <script th:src="@{/js/vendor/autoscript.js}"></script>
+    <!-- Nuestro JS específico de la invocación a la firma -->
+    <script th:src="@{/js/custom/signer-invoke.js}"></script>
+
+</head>
+<body>
+<div class="body">
+    <h1 class="page-title">Firma de la autorización</h1>
+
+    <div class="report-card">
+        <div class="pop-up-title-v1"><strong>Instrucciones</strong></div>
+
+        <div class="report-section" style="display:none;">
+            <p><span th:text="${solicitud.id}" id="id-solicitud-autorizacion"></span></p>
+        </div>
+
+        <div class="report-section">
+            <div class="report-value">
+                A continuación se va a proceder a la firma del informe médico. Para ello, es necesario tener instalado el programa de <strong>AutoFirma</strong> (o <strong>Cliente móvil @firma</strong> si se está utilizando <strong>VitalSanity</strong> desde el móvil).
+                <br>
+                Cuando haya leído toda la información, pulse sobre el botón de <strong>"Firmar y enviar"</strong>.
+                Tras haber pulsado sobre dicho botón se abrirá en el navegador el programa de <strong>AutoFirma</strong> (o <strong>Cliente móvil @firma</strong>), el cual le solicitará elegir el certificado con el cual desea usted firmar la autorización. Una vez elegido el certificado, se realizará de forma
+                automática con el proceso de firma. Cuando este proceso haya finalizado, usted podrá descargarse una copia de la autorización firmada.
+            </div>
+        </div>
+
+        <br>
+
+        <div class="pop-up-title-v1"><strong>Información básica sobre protección de datos:</strong></div>
+
+        <div class="report-section">
+            <div class="report-value">
+
+                <strong>Encargado: </strong> VitalSanity S.A. (NIF A79667150), Calle Innovación, 123, nº 10, 28001 Madrid, España, correo: vital@sanity.es.
+
+                <br>
+                <br>
+
+                <strong>Propósito: </strong> Administrar la gestión de la solicitud de autorización al historial médico centralizado de uno de los pacientes registrados en la aplicación.
+
+                <br>
+                <br>
+
+                <strong>Transferencia de datos: </strong>  Es imprescindible comunicar la información de contacto y todos los datos de la autorización al paciente en específico para que este pueda tomar la decisión de autorizar o denegar la solicitud de la autorización.
+
+                <br>
+                <br>
+
+                <strong>Derechos: </strong> Una vez el paciente haya autorizado la solicitud, se garantiza al profesional médico autorizado el derecho de acceder a todos los informes dentro del historial médico del paciente, así como a sus detalles y documentos adjuntos. Asimismo, se garantiza al profesional médico autorizado el poder agregar nuevos informes
+                dentro del historial del paciente y agregar nuevos documentos adjuntos, así como el poder modificar informes propios que el profesional médico haya agregado con anterioridad.
+                Del mismo modo, se garantiza que toda la información proporcionada del paciente es auténtica, precisa y de su legítima propiedad y/o de terceras personas (siempre y cuando el paciente lo haya autorizado).
+
+                <br>
+                <br>
+
+                Para conocer el procedimiento para ejercer estos derechos y obtener detalles adicionales, consulte nuestra <a th:href="${urlPrefirmadaPoliticaPrivacidad}" target="_blank" class="file-link">política de privacidad</a>.
+
+                <br>
+                <br>
+                <br>
+
+                <hr>
+
+                <div class="checkbox-container">
+                    <input type="checkbox" id="accept" name="accept">
+                    <label for="accept">He leído y comprendido la información expuesta en materia de protección de datos.</label>
+                </div>
+
+            </div>
+        </div>
+
+
+    </div>
+
+    <div class="button-container">
+        <button type="button" onclick="if(document.getElementById('accept').checked){ onClickPacienteCofirmarAutorizacion(); } else { alert('Debe de marcar la casilla asociada a lo expuesto en materia de protección de datos.'); }" class="back-button">Aceptar y Firmar</button>
+    </div>
+</div>
+
+<div id="loading-overlay" class="overlay" style="display: none;">
+    <div class="spinner"></div>
+    <p>Procesando, por favor espere...</p>
+</div>
+</body>
+</html>

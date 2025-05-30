@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Editar un informe</title>
+  <div th:include="navbar :: head (titulo='Editar un informe')"></div>
+  <link rel="stylesheet" th:href="@{/css/custom/global/global.css}">
+  <link rel="stylesheet" th:href="@{/css/custom/profesional_medico/editar-informe.css}">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <script th:inline="javascript">
+    const contextPath = /*[[${contextPath}]]*/ '';
+  </script>
+
+
+  <!-- Cargamos autoscript.js (JavaScript de despliegue de @firma) -->
+  <script th:src="@{/js/vendor/autoscript.js}"></script>
+  <!-- Nuestro JS específico de la invocación a la firma -->
+  <script th:src="@{/js/custom/signer-invoke.js}"></script>
+
+</head>
+<body>
+<div th:replace="navbar::menuBar"></div>
+<div class="body-principal">
+  <h1 class="page-title">Editar un informe</h1>
+
+  <div class="form-container">
+    <div class="form-section">
+      <!-- Modified: Combined the ID text into a single span -->
+      <div class="form-id">
+        <span class="form-id-combined"><strong>Datos del informe</strong></span>
+      </div>
+
+      <form id="form-authorization-data">
+
+        <div class="form-field" style="display:none;">
+          <label class="form-label required">Id del informe</label>
+          <input th:value="${informeId}" type="text" name="informeId" id="informeId" class="form-input">
+        </div>
+
+        <div class="form-field" style="display:none;">
+          <label class="form-label required">Id del profesional médico</label>
+          <input th:value="${profesionalMedicoId}" type="text" name="profesionalMedicoId" id="profesionalMedicoId" class="form-input">
+        </div>
+
+        <div class="form-field" style="display:none;">
+          <label class="form-label required">Id del paciente</label>
+          <input th:value="${pacienteId}" type="text" name="pacienteId" id="pacienteId" class="form-input">
+        </div>
+
+        <div class="form-field">
+          <label class="form-label required">Título del informe:</label>
+          <input th:value="${informe.titulo}" type="text" name="titulo" id="titulo" class="form-input">
+        </div>
+        <div class="form-field">
+          <label class="form-label required">Descripción:</label>
+          <textarea th:text="${informe.descripcion}" name="descripcion" id="descripcion" class="form-textarea"></textarea>
+        </div>
+        <div class="form-field">
+          <label class="form-label required">Observaciones:</label>
+          <textarea th:text="${informe.observaciones}" name="observaciones" id="observaciones" class="form-textarea"></textarea>
+        </div>
+
+      </form>
+
+    </div>
+
+  </div>
+
+  <div class="submit-container">
+    <button class="submit-button">Aceptar</button>
+  </div>
+
+</div>
+<div class="body-firma" id="firmaAutorizacion" style="display:none;">
+  <h1 class="page-title">Firma de la autorización</h1>
+
+  <div class="report-card">
+    <div class="title-v1"><strong>Instrucciones</strong></div>
+
+    <div class="report-section">
+      <div class="report-value">
+        A continuación se va a proceder a la firma del informe médico. Para ello, es necesario tener instalado el programa de <strong>AutoFirma</strong> (o <strong>Cliente móvil @firma</strong> si se está utilizando <strong>VitalSanity</strong> desde el móvil).
+        <br>
+        Cuando haya leído toda la información, pulse sobre el botón de <strong>"Firmar y enviar"</strong>.
+        Tras haber pulsado sobre dicho botón se abrirá en el navegador el programa de <strong>AutoFirma</strong> (o <strong>Cliente móvil @firma</strong>), el cual le solicitará elegir el certificado con el cual desea usted firmar la autorización. Una vez elegido el certificado, se realizará de forma
+        automática con el proceso de firma. Cuando este proceso haya finalizado, usted podrá descargarse una copia de la autorización firmada.
+      </div>
+    </div>
+
+    <br>
+
+    <div class="title-v1"><strong>Información básica sobre protección de datos:</strong></div>
+
+    <div class="report-section">
+      <div class="report-value">
+
+        <strong>Encargado: </strong> VitalSanity S.A. (NIF A79667150), Calle Innovación, 123, nº 10, 28001 Madrid, España, correo: vital@sanity.es.
+
+        <br>
+        <br>
+
+        <strong>Propósito: </strong> Administrar la gestión de la solicitud de la edición de un informe ya existente dentro del historial médico centralizado de uno de los pacientes registrados en la aplicación.
+
+        <br>
+        <br>
+
+        <strong>Transferencia de datos: </strong> Es imprescindible que aparezca dentro del informe editado toda la información de forma detallada así como todos los datos relevantes del profesional médico. De este modo, el paciente en específico podrá obtener una visión clara y precisa de lo que le está mostrando el informe.
+
+        <br>
+        <br>
+
+        <strong>Derechos: </strong> Una vez el profesional médico haya subido el informe editado dentro del historial médico del paciente, dicho profesional médico podrá seguir subiendo ficheros adjuntados a dicho informe.
+        Los ficheros previamente adjuntados por el profesional médico al informe anterior no serán eliminados.
+        Todos los profesionales médicos que el paciente haya autorizado tendrán acceso al informe editado, pudiendo ver toda la información y detalles asociados al mismo, así como sus documentos adjuntos.
+        No obstante, el profesional médico que haya creado dicho informe será el único que podrá editar dicho informe y adjuntar nuevos documentos.
+        Si en algún momento el paciente decide desautorizar al profesional médico, dicho profesional perderá el acceso a los informes del resto de
+        profesionales autorizados, pero dicho profesional médico seguirá teniendo acceso a los informes previos que él mismo haya creado.
+
+        <br>
+        <br>
+
+        Para conocer el procedimiento para ejercer estos derechos y obtener detalles adicionales, consulte nuestra <a th:href="${urlPrefirmadaPoliticaPrivacidad}" target="_blank" class="file-link">política de privacidad</a>.
+
+        <br>
+        <br>
+        <br>
+
+        <hr>
+
+        <div class="checkbox-container">
+          <input type="checkbox" id="accept" name="accept">
+          <label for="accept">He leído y comprendido toda la información expuesta en materia de protección de datos.</label>
+        </div>
+
+      </div>
+    </div>
+
+
+  </div>
+
+  <div class="button-container">
+
+    <div class="button-container">
+      <button type="button" onclick="if(document.getElementById('accept').checked){ onClickFirmarInforme(); } else { alert('Debe de marcar la casilla asociada a lo expuesto en materia de protección de datos.'); }" class="back-button">Firmar y Enviar</button>
+    </div>
+  </div>
+</div>
+
+<div id="loading-overlay" class="overlay" style="display: none;">
+  <div class="spinner"></div>
+  <p>Procesando, por favor espere...</p>
+</div>
+
+
+<div th:replace="navbar::javascript"></div>
+
+<div th:replace="footer :: footer"></div>
+
+<script>
+  lucide.createIcons();
+</script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var firmaDiv = document.getElementById('firmaAutorizacion');
+    var aceptarButton = document.querySelector('.submit-container button.submit-button');
+    aceptarButton.addEventListener('click', function(e) {
+      // Selecciona todos los campos de entrada y áreas de texto del primer div que no sean de solo lectura
+      var requiredFields = document.querySelectorAll('.form-container input.form-input, .form-container textarea.form-textarea');
+      var isValid = true;
+      requiredFields.forEach(function(field) {
+        if (!field.value.trim()) {
+          isValid = false;
+        }
+      });
+      if (isValid) {
+        // Se cambia de 'block' a 'flex' para respetar el layout definido en ".body"
+        firmaDiv.style.display = 'flex';
+      } else {
+        alert('Por favor, complete todos los campos del formulario de la solicitud de autorización.');
+      }
+    });
+  });
+</script>
+
+
+</body>
+</html>

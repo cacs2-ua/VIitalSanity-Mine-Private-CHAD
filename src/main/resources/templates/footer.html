@@ -1,0 +1,65 @@
+<!-- templates/fragments/footer.html -->
+<div th:fragment="footer" class="site-footer">
+  <footer class="bg-gray-900 text-white pt-16 pb-8">
+    <div class="container mx-auto px-4 md:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+        <div>
+          <div class="flex items-center mb-4">
+            <i data-lucide="activity" class="h-7 w-7 text-purple-400"></i>
+            <span class="ml-2 text-xl font-bold">VitalSanity</span>
+          </div>
+          <p class="text-gray-400 mb-6">
+            La plataforma que revoluciona la gestión de información médica, poniendo al paciente en el centro.
+          </p>
+          <div class="flex space-x-4">
+            <a href="#" class="text-gray-400 hover:text-purple-400 transition duration-300">
+              <i data-lucide="facebook" class="w-5 h-5"></i>
+            </a>
+            <a href="#" class="text-gray-400 hover:text-purple-400 transition duration-300">
+              <i data-lucide="twitter" class="w-5 h-5"></i>
+            </a>
+            <a href="#" class="text-gray-400 hover:text-purple-400 transition duration-300">
+              <i data-lucide="instagram" class="w-5 h-5"></i>
+            </a>
+            <a href="#" class="text-gray-400 hover:text-purple-400 transition duration-300">
+              <i data-lucide="linkedin" class="w-5 h-5"></i>
+            </a>
+          </div>
+        </div>
+        <div>
+          <h3 class="text-lg font-semibold mb-4">Enlaces rápidos</h3>
+          <ul class="space-y-2">
+            <li><a href="#inicio"       class="text-gray-400 hover:text-purple-400">Inicio</a></li>
+            <li><a href="#beneficios"   class="text-gray-400 hover:text-purple-400">Beneficios</a></li>
+            <li><a href="#como-funciona"class="text-gray-400 hover:text-purple-400">Cómo funciona</a></li>
+            <li><a href="#testimonios"  class="text-gray-400 hover:text-purple-400">Testimonios</a></li>
+            <li><a href="#contacto"     class="text-gray-400 hover:text-purple-400">Contacto</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="text-lg font-semibold mb-4">Legal</h3>
+          <ul class="space-y-2">
+            <li><a href="#" class="text-gray-400 hover:text-purple-400">Términos y condiciones</a></li>
+            <li><a th:href="${urlPrefirmadaPoliticaPrivacidad}" target="_blank" class="text-gray-400 hover:text-purple-400">Política de privacidad</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-purple-400">Política de cookies</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-purple-400">Aviso legal</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="text-lg font-semibold mb-4">Contacto</h3>
+          <ul class="space-y-2 text-gray-400">
+            <li>Calle Innovación, 123</li>
+            <li>28001 Madrid, España</li>
+            <li>vital@sanity.es</li>
+            <li>+34 911 22 33 44</li>
+          </ul>
+        </div>
+      </div>
+      <div class="border-t border-gray-800 pt-8">
+        <p class="text-center text-gray-500">
+          &copy; <span th:text="${#dates.format(#dates.createNow(), 'yyyy')}"></span> VitalSanity. Todos los derechos reservados.
+        </p>
+      </div>
+    </div>
+  </footer>
+</div>

@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Crear nuevo informe</title>
+  <style>
+    /* Global styles */
+    html, body {
+      background-color: #DBD5FF;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    /* CSS variables */
+    :root {
+      --primary-bg: #DBD5FF;
+      --card-bg: #F5F3FF;
+      --text-color: #000000;
+      --link-color: blue;
+      --button-bg: #4643FF;
+      --button-text: #ffffff;
+    }
+
+    /* Containers para secciones principales */
+    .body-principal,
+    .body-firma {
+      background-color: #DBD5FF;
+      color: #000000;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 1rem;
+    }
+
+    /* Typography */
+    .page-title {
+      text-align: center;
+      margin: 1rem 0;
+      font-size: 1.75rem;
+      font-weight: bold;
+      text-decoration: underline;
+      margin-bottom: 1.85rem;
+    }
+
+    /* Form container y elementos */
+    .form-container {
+      background-color: #6528BF;
+      border-radius: 0.5rem;
+      width: 100%;
+      max-width: 35rem;
+      padding: 1rem;
+      color: white;
+    }
+    .form-section {
+      margin-bottom: 1.5rem;
+    }
+    .form-field {
+      margin-bottom: 1rem;
+    }
+    .form-label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: bold;
+    }
+    .required::before {
+      content: "*";
+      color: white;
+    }
+    .form-input, .form-textarea {
+      width: 100%;
+      padding: 0.5rem;
+      border-radius: 0.25rem;
+      border: none;
+      background-color: #F5F3FF;
+    }
+    .form-textarea {
+      min-height: 5rem;
+      resize: vertical;
+    }
+    .form-id {
+      display: flex;
+      margin-bottom: 1rem;
+      justify-content: center;
+      text-decoration: underline;
+    }
+    .form-id-combined {
+      font-size: 1.3rem;
+    }
+
+    /* Attachments */
+    .attachments-title {
+      text-align: center;
+      margin-bottom: 1rem;
+      font-size: 1.2rem;
+      text-decoration: underline;
+    }
+    .attachment-button {
+      background-color: #c0c0c0;
+      color: black;
+      border: none;
+      padding: 0.25rem 0.5rem;
+      border-radius: 0.25rem;
+      cursor: pointer;
+      display: block;
+      margin: 0 auto 1rem;
+      font-weight: bold;
+      width: fit-content;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+    .attachment-button:hover {
+      background-color: #a9a9a9;
+      transform: scale(1.05);
+    }
+    .attachment-icon {
+      display: inline-block;
+      margin-left: 0.25rem;
+    }
+    .attachments-list {
+      background-color: #F5F3FF;
+      border-radius: 0.25rem;
+      padding: 0.5rem;
+      margin-top: 1rem;
+    }
+    .attachment-item {
+      color: blue;
+      text-decoration: none;
+      display: block;
+      padding: 0.5rem;
+      text-align: center;
+      font-weight: bold;
+    }
+    .attachment-item:hover {
+      text-decoration: underline;
+    }
+
+    /* Submit button */
+    .submit-container {
+      text-align: center;
+      margin-top: 1.5rem;
+    }
+    .submit-button {
+      background-color: #4643FF;
+      color: white;
+      border: none;
+      padding: 0.5rem 2rem;
+      border-radius: 1.5rem;
+      font-size: 1rem;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+    .submit-button:hover {
+      background-color: #303f9f;
+      transform: scale(1.05);
+    }
+
+    /* Selected files */
+    .selected-files {
+      margin-top: 1rem;
+      background-color: #F5F3FF;
+      border-radius: 0.25rem;
+      padding: 0.75rem;
+      color: #333;
+      font-size: 0.95rem;
+      font-weight: normal;
+    }
+    .selected-files h3 {
+      font-size: 1.1rem;
+      font-weight: bold;
+      margin-bottom: 0.75rem;
+      color: #000;
+      text-align: center;
+      text-decoration: underline;
+    }
+    .selected-file-item {
+      margin-bottom: 0.5rem;
+      text-align: center;
+      word-break: break-all;
+    }
+
+    /* Report card and related elements (para sección de firma) */
+    .report-card {
+      background-color: var(--card-bg);
+      border-radius: 0.75rem;
+      padding: 1.5rem;
+      width: 100%;
+      max-width: 50rem;
+      box-shadow: 0 0.125rem 0.625rem rgba(0, 0, 0, 0.1);
+    }
+    .title-v1 {
+      text-align: center;
+      font-size: 1.3rem;
+      font-weight: bold;
+      margin-bottom: 1.5rem;
+      text-decoration: underline;
+    }
+    .report-number {
+      font-weight: normal;
+    }
+    .report-section {
+      margin-bottom: 1rem;
+    }
+    .report-label {
+      font-weight: bold;
+      display: inline;
+    }
+    .report-value {
+      display: inline;
+    }
+    .files-section {
+      margin-top: 1.25rem;
+      border: 0.1rem solid black;
+      text-align: center;
+      background-color: #EBF6FF;
+      width: 70%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .files-title {
+      font-size: 1.25rem;
+      font-weight: bold;
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+    .file-link {
+      color: var(--link-color);
+      text-decoration: underline;
+      margin: 0.75rem 0;
+      font-weight: bold;
+    }
+    .button-container {
+      display: flex;
+      justify-content: center;
+      margin-top: 1.5rem;
+    }
+    .back-button {
+      background-color: var(--button-bg);
+      color: var(--button-text);
+      border: none;
+      border-radius: 1.5rem;
+      padding: 0.5rem 2rem;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+      margin-bottom: 0.65rem;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+    .back-button:hover {
+      background-color: #3a42cc;
+      transform: scale(1.05);
+    }
+    .checkbox-container {
+      margin-top: 1rem;
+      display: flex;
+      align-items: center;
+      font-size: 1rem;
+    }
+    .checkbox-container input[type="checkbox"] {
+      margin-right: 0.5rem;
+      cursor: pointer;
+    }
+
+    /* Overlay and Spinner for AutoFirma */
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.6);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      color: #fff;
+      font-size: 1.2rem;
+      padding: 1rem;
+      box-sizing: border-box;
+    }
+    .spinner {
+      border: 0.5rem solid #f3f3f3;
+      border-top: 0.5rem solid #3498db;
+      border-radius: 50%;
+      width: 3.75rem;
+      height: 3.75rem;
+      animation: spin 1s linear infinite;
+      margin-bottom: 1.25rem;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 600px) {
+      .form-container {
+        padding: 0.75rem;
+      }
+      .page-title {
+        font-size: 1.25rem;
+      }
+    }
+    @media (max-width: 37.5rem) {
+      .form-container {
+        padding: 0.75rem;
+      }
+      .page-title {
+        font-size: 1.25rem;
+      }
+      .report-card {
+        padding: 1rem;
+      }
+      .title-v1, .files-title {
+        font-size: 1.2rem;
+      }
+      .page-title {
+        font-size: 1.5rem;
+      }
+      .files-section {
+        width: 100%;
+      }
+    }
+    @media (max-width: 768px) {
+      .overlay {
+        font-size: 1rem;
+        padding: 0.8rem;
+      }
+      .spinner {
+        width: 3rem;
+        height: 3rem;
+        border-width: 0.4rem;
+      }
+    }
+    @media (max-width: 480px) {
+      .overlay {
+        font-size: 0.9rem;
+        padding: 0.5rem;
+      }
+      .spinner {
+        width: 2.5rem;
+        height: 2.5rem;
+        border-width: 0.35rem;
+      }
+    }
+
+  </style>
+  <div th:include="navbar :: head (titulo='Crear nuevo Informe')"></div>
+  <link rel="stylesheet" th:href="@{/css/custom/global/global.css}">
+  <link rel="stylesheet" th:href="@{/css/custom/profesional_medico/crear-nuevo-informe.css}">
+</head>
+<body>
+  <div th:replace="navbar::menuBar"></div>
+  <div class="body-principal">
+  <h1 class="page-title">Crear nuevo informe</h1>
+  
+  <div class="form-container">
+    <div class="form-section">
+      <!-- Modified: Combined the ID text into a single span -->
+      <div class="form-id">
+        <span class="form-id-combined"><strong>Id. informe:</strong> 20939676</span>
+      </div>
+      
+      <div class="form-field">
+        <label class="form-label required">Título del informe:</label>
+        <input type="text" class="form-input" value="Resonancia Magnética">
+      </div>
+      
+      <div class="form-field">
+        <label class="form-label required">Descripción:</label>
+        <textarea class="form-textarea">Informe de resonancia magnética realizado para evaluar posibles lesiones traumáticas de sistema músculo-esquelético. Estudio realizado en el Hospital Vithas Alicante por el Dr. Juan Martínez Fernández, especialista en traumatología.</textarea>
+      </div>
+      
+      <div class="form-field">
+        <label class="form-label">Observaciones:</label>
+        <textarea class="form-textarea">El informe muestra hallazgos compatibles con el diagnóstico inicial. Se recomienda continuar con la exploración clínica y posibles pruebas adicionales si los síntomas persisten o se agravan.</textarea>
+      </div>
+    </div>
+
+    <div class="form-section">
+      <h2 class="attachments-title">Adjuntar ficheros para el informe</h2>
+
+      <label for="fileInput" class="attachment-button">
+        Adjuntar
+        <span class="attachment-icon">▼</span>
+      </label>
+      <input type="file" id="fileInput" multiple style="display: none;">
+
+      <div id="selectedFiles" class="selected-files" style="display: none;">
+        <h3>Ficheros adjuntados</h3>
+      </div>
+
+    </div>
+  </div>
+  
+  <div class="submit-container">
+    <button class="submit-button">Aceptar</button>
+  </div>
+  </div>
+  <div class="body-firma" id="firmaAutorizacion" style="display:none;">
+    <h1 class="page-title">Firma de la autorización</h1>
+
+    <div class="report-card">
+      <div class="title-v1"><strong>Instrucciones</strong></div>
+
+      <div class="report-section">
+        <div class="report-value">
+          A continuación se va a proceder a la firma de la autorización. Para ello, es necesario tener instalado el programa de AutoFirma. Cuando haya leído toda la información, pulse sobre el botón de "Firmar y enviar".
+          Tras haber pulsado sobre dicho botón se abrirá en el navegador el programa de AutoFirma, el cual le solicitará elegir el certificado con el cual desea usted firmar la autorización. Una vez elegido el certificado, se realizará de forma
+          automática con el proceso de firma. Cuando este proceso haya finalizado, usted podrá descargarse una copia de la autorización firmada.
+        </div>
+      </div>
+
+      <br>
+
+      <div class="title-v1"><strong>Información básica sobre protección de datos:</strong></div>
+
+      <div class="report-section">
+        <div class="report-value">
+
+          <strong>Responsable: </strong> VitalSanity, S.A. dentro del ámbito sanitario.
+
+          <br>
+          <br>
+
+          <strong>Propósito: </strong> Administrar la gestión de la solicitud de autorización al historial médico centralizado de uno de los pacientes registrados en la aplicación.
+
+          <br>
+          <br>
+
+          <strong>Transferencia de datos: </strong>  Es imprescindible comunicar la información de contacto y todos los datos de la autorización al paciente en específico para que este pueda tomar la decisión de autorizar o denegar la solicitud de la autorización.
+
+          <br>
+          <br>
+
+          <strong>Derechos: </strong>  Una vez el paciente haya autorizado la solicitud, se garantiza el derecho de acceder a todas las entradas dentro del historial médico del paciente. Asimismo, se garantiza el poder agregar nuevas entradas
+          dentro del historial del paciente, así como el poder modificar las entradas propias que usted como profesional médico haya agregado con anterioridad.
+          Del mismo modo, se garantiza que toda la información proporcionada del paciente es auténtica, precisa y de su legítima propiedad y/o de terceras personas (siempre y cuando el paciente lo haya autorizado).
+
+          <br>
+          <br>
+
+          Para conocer el procedimiento para ejercer estos derechos y obtener detalles adicionales, consulte nuestra <a class="file-link" href="#" target="_blank">política de privacidad</a>.
+
+          <br>
+          <br>
+          <br>
+
+          <hr>
+
+          <div class="checkbox-container">
+            <input type="checkbox" id="accept" name="accept">
+            <label for="accept">He leído y comprendido toda la información expuesta en materia de protección de datos.</label>
+          </div>
+
+        </div>
+      </div>
+
+
+    </div>
+
+    <div class="button-container">
+
+      <div class="button-container">
+        <button type="button" onclick="if(document.getElementById('accept').checked){ onClickFirmarAutorizacion(); } else { alert('Debe de marcar la casilla asociada a lo expuesto en materia de protección de datos.'); }" class="back-button">Firmar y Enviar</button>
+      </div>
+    </div>
+  </div>
+
+
+  <div th:replace="navbar::javascript"></div>
+
+
+  <script>
+    const fileInput = document.getElementById('fileInput');
+    const selectedFilesContainer = document.getElementById('selectedFiles');
+
+    fileInput.addEventListener('change', function () {
+      const files = Array.from(fileInput.files);
+// Preservamos el h3 original si existe
+      const heading = selectedFilesContainer.querySelector('h3');
+      selectedFilesContainer.innerHTML = '';
+      if (heading) selectedFilesContainer.appendChild(heading);
+
+
+      if (files.length > 0) {
+        selectedFilesContainer.style.display = 'block';
+        files.forEach(file => {
+          const fileElement = document.createElement('div');
+          fileElement.className = 'selected-file-item';
+          fileElement.textContent = `📎 ${file.name}`;
+          selectedFilesContainer.appendChild(fileElement);
+        });
+      } else {
+        selectedFilesContainer.style.display = 'none';
+      }
+    });
+  </script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var firmaDiv = document.getElementById('firmaAutorizacion');
+      var aceptarButton = document.querySelector('.submit-container button.submit-button');
+      aceptarButton.addEventListener('click', function(e) {
+        // Selecciona todos los campos de entrada y áreas de texto del primer div que no sean de solo lectura
+        var requiredFields = document.querySelectorAll('.form-container input.form-input:not([readonly]), .form-container textarea.form-textarea');
+        var isValid = true;
+        requiredFields.forEach(function(field) {
+          if (!field.value.trim()) {
+            isValid = false;
+          }
+        });
+        if (isValid) {
+          // Se cambia de 'block' a 'flex' para respetar el layout definido en ".body"
+          firmaDiv.style.display = 'flex';
+        } else {
+          alert('Por favor, complete todos los campos del formulario de la solicitud de autorización.');
+        }
+      });
+    });
+  </script>
+
+
+</body>
+</html>

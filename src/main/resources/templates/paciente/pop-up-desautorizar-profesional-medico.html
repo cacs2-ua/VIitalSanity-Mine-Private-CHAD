@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Desautorizar Profesional Médico</title>
+    <link rel="stylesheet" th:href="@{/css/custom/global/global.css}" />
+    <link rel="stylesheet" th:href="@{/css/custom/paciente/pop-up-desautorizar-profesional-medico.css}" />
+
+    <script th:inline="javascript">
+        const contextPath = /*[[${contextPath}]]*/ '';
+    </script>
+
+    <script th:src="@{/js/vendor/autoscript.js}"></script>
+    <script th:src="@{/js/custom/signer-invoke.js}"></script>
+</head>
+
+<body>
+<div class="body">
+    <h1 class="page-title">Desautorizar profesional médico</h1>
+
+    <div class="report-card">
+        <div class="pop-up-title-v1"><strong>Instrucciones</strong></div>
+
+        <!-- Oculto (por si quieres seguir mostrando el span)—puede eliminarse sin afectar estilos -->
+        <div class="report-section" style="display:none;">
+            <p><span id="id-profesional-medico" th:text="${profesionalMedicoId}"></span></p>
+        </div>
+
+        <div class="report-section">
+            <div class="report-value">
+                ¿Confirmas que deseas <strong>desautorizar</strong> a este profesional médico? El profesional médico perderá el acceso a tu historial médico centralizado.
+            </div>
+        </div>
+    </div>
+
+    <div class="button-container">
+        <form method="post"
+              th:action="@{/api/paciente/desautorizar-profesional-medico}"
+              target="_top">
+            <input type="hidden" name="id" th:value="${profesionalMedicoId}" />
+
+            <button type="submit" class="button-deny">
+                Sí, desautorizar
+            </button>
+        </form>
+    </div>
+</div>
+</body>
+</html>

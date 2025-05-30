@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Bienvenido Centro Médico</title>
+    <div th:include="navbar :: head (titulo='Detalles de Informe')"></div>
+</head>
+<body>
+<div th:replace="navbar::menuBar"></div>
+<h1>¡Bienvenido Centro Médico autenticado!</h1>
+<p>Estás mirando una página exclusiva para CENTROS MÉDICOS</p>
+<form th:action="@{/logout}" method="get">
+    <button class="btn btn-dark" type="submit">Cerrar sesión</button>
+</form>
+<div th:replace="navbar::javascript"></div>
+</body>
+</html>

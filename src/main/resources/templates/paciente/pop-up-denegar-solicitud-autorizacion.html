@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pop Up Denegar Solicitud Autorizacion</title>
+    <link rel="stylesheet" th:href="@{/css/custom/global/global.css}">
+    <link rel="stylesheet" th:href="@{/css/custom/paciente/pop-up-denegar-solicitud-autorizacion.css}">
+
+    <script th:inline="javascript">
+        const contextPath = /*[[${contextPath}]]*/ '';
+    </script>
+
+    <!-- Cargamos autoscript.js (JavaScript de despliegue de @firma) -->
+    <script th:src="@{/js/vendor/autoscript.js}"></script>
+    <!-- Nuestro JS específico de la invocación a la firma -->
+    <script th:src="@{/js/custom/signer-invoke.js}"></script>
+
+</head>
+<body>
+<div class="body">
+    <h1 class="page-title">Denegar solicitud de autorización</h1>
+
+    <div class="report-card">
+        <div class="pop-up-title-v1"><strong>Instrucciones</strong></div>
+
+        <div class="report-section" style="display:none;">
+            <p><span th:text="${idSolicitudAutorizacion}" id="id-solicitud-autorizacion"></span></p>
+        </div>
+
+        <div class="report-section">
+            <div class="report-value">
+                ¿Confirmas que deseas denegar la autorización de acceso a tu historial médico centralizado?
+            </div>
+        </div>
+
+    </div>
+
+    <div class="button-container">
+        <form method="post" th:action="@{/api/paciente/denegar-solicitud-autorizacion(idSolicitudAutorizacion=${idSolicitudAutorizacion})}">
+
+            <button type="submit" class="button-deny">
+                Confirmar y denegar autorización
+            </button>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>

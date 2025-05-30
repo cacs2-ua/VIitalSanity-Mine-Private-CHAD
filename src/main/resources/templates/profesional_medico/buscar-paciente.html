@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Buscar paciente para solicitar el acceso a su historial</title>
+  <div th:include="navbar :: head (titulo='Buscar paciente para solicitar el acceso a su historial')"></div>
+  <link rel="stylesheet" th:href="@{/css/custom/global/global.css}">
+  <link rel="stylesheet" th:href="@{/css/custom/profesional_medico/buscar-paciente.css}">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+<div th:replace="navbar::menuBar"></div>
+<div class="body">
+  <div class="page-container">
+    <h2 class="header"><strong>Buscar paciente para solicitar el acceso a su historial</strong></h2>
+    <br>
+
+
+    <!-- Formulario de busqueda con binding thymeleaf -->
+    <form th:action="@{'/api/profesional-medico/buscar-paciente'}" method="post" th:object="${buscarPacienteData}">
+      <div class="filter-section">
+        <div class="input-group">
+          <label for="input-id">NIF/NIE del paciente al que se quiere solicitar acceso a su historial</label>
+          <input type="text" id="input-id" class="filter-input" th:field="*{nifNie}" placeholder="Introduce NIF/NIE">
+        </div>
+        <button type="submit" class="button-primary">Buscar</button>
+      </div>
+    </form>
+
+    <!-- Mostrar mensaje de error, si existiera -->
+    <div th:if="${error != null}" class="error-message">
+      <p th:text="${error}"></p>
+    </div>
+
+    <!-- Mostrar datos del paciente si se encontro -->
+    <div th:if="${paciente != null}" class="report-card">
+      <div class="report-id">
+        <strong>Nombre del paciente:</strong>
+        <span class="report-number" th:text="${paciente.nombreCompleto}"></span>
+      </div>
+      <div class="report-detail">
+        <strong>NIF:</strong>
+        <span th:text="${paciente.nifNie}"></span>
+      </div>
+      <div class="report-detail">
+        <strong>Genero:</strong>
+        <span th:text="${paciente.genero}"></span>
+      </div>
+      <div class="report-detail">
+        <strong>Edad:</strong>
+        <span th:text="${paciente.edad}"></span>
+      </div>
+      <div th:if="${solicitada == true}" class="already-requested-message">
+        <p>Ya existe una solicitud de autorización válida asociada a dicho paciente</p>
+      </div>
+
+      <div th:if="${solicitada == false}" class="button-container">
+        <form th:action="@{'/api/profesional-medico/solicitar-autorizacion/' + ${usuarioPaciente.id}}" method="get">
+          <button type="submit" class="button-access-record">Solicitar acceso</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<div th:replace="navbar::javascript"></div>
+
+<div th:replace="footer :: footer"></div>
+
+<script>
+  lucide.createIcons();
+</script>
+</body>
+</html>

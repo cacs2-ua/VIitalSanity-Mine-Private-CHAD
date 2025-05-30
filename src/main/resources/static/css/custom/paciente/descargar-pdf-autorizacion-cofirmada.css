@@ -1,0 +1,163 @@
+/* Custom CSS styles */
+:root {
+    --primary-bg: #DBD5FF;
+    --card-bg: #F5F3FF;
+    --text-color: #000000;
+    --link-color: blue;
+    --button-bg: #4643FF;
+    --button-text: #ffffff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+.body {
+    background-color: var(--primary-bg);
+    color: var(--text-color);
+    padding: 1rem;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.page-title {
+    text-align: center;
+    margin: 1rem 0;
+    font-size: 1.75rem;
+    font-weight: bold;
+    text-decoration: underline;
+    margin-bottom: 1.85rem;
+}
+
+.report-card {
+    background-color: var(--card-bg);
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    width: 100%;
+    max-width: 50rem;
+    box-shadow: 0 0.125rem 0.625rem rgba(0, 0, 0, 0.1);
+}
+
+/* Modified: Underline the entire "Id. informe" text */
+.pop-up-title-v1 {
+    text-align: center;
+    font-size: 1.3rem;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+    text-decoration: underline; /* Underlines entire text including spaces */
+}
+
+.pop-up-title-v2 {
+    text-align: center;
+    font-size: 1.15rem;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+    text-decoration: underline; /* Underlines entire text including spaces */
+}
+
+/* New: Ensures the number appears normal */
+.report-number {
+    font-weight: normal;
+}
+
+.report-section {
+    margin-bottom: 1rem;
+}
+
+.report-label {
+    font-weight: bold;
+    display: inline;
+}
+
+.report-value {
+    display: inline;
+}
+
+.files-section {
+    margin-top: 1.25rem;
+    border: 0.1rem solid black;
+    text-align: center;
+    background-color: #EBF6FF;
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.files-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.file-link {
+    color: var(--link-color);
+    text-decoration: underline;
+    margin: 0.75rem 0;
+    font-weight: bold;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 1.5rem;
+}
+
+.back-button {
+    background-color: var(--button-bg);
+    color: var(--button-text);
+    border: none;
+    border-radius: 1.5rem;
+    padding: 0.5rem 2rem;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    margin-bottom: 0.65rem;
+    /* Modified: Added transform transition */
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.back-button:hover {
+    background-color: #3a42cc;
+    transform: scale(1.05);
+}
+
+.checkbox-container {
+    margin-top: 1rem;
+    display: flex;
+    align-items: center;
+    font-size: 1rem;
+}
+.checkbox-container input[type="checkbox"] {
+    margin-right: 0.5rem;
+    cursor: pointer;
+}
+
+
+@media (max-width: 37.5rem) {
+    .report-card {
+        padding: 1rem;
+    }
+
+    .pop-up-title-v1, .files-title {
+        font-size: 1.2rem;
+    }
+
+    .page-title {
+        font-size: 1.5rem;
+    }
+
+    .pop-up-title-v2 {
+        font-size: 1.05rem;
+    }
+
+    .files-section {
+        width: 100%;
+    }
+
+}

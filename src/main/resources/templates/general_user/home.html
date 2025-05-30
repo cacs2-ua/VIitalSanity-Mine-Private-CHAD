@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VitalSanity - La aplicación web donde El Paciente es El Protagonista</title>
+    <div th:include="navbar :: head (titulo='VitalSanity - La web donde el paciente es el protagonista')"></div>
+    <meta name="description" content="VitalSanity centraliza tu historial médico y te permite compartirlo de forma segura con los profesionales de la salud que elijas." />
+    <link rel="stylesheet" th:href="@{/css/custom/general_user/home.css}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        teal: {
+                            50: '#f0fdfa',
+                            100: '#ccfbf1',
+                            200: '#99f6e4',
+                            300: '#5eead4',
+                            400: '#2dd4bf',
+                            500: '#14b8a6',
+                            600: '#0d9488',
+                            700: '#0f766e',
+                            800: '#115e59',
+                            900: '#134e4a',
+                            950: '#042f2e',
+                        },
+                        purple: {
+                            50:  '#f5f3ff',
+                            100: '#ede9fe',
+                            150: '#f5f3ff',
+                            200: '#ddd6fe',
+                            250: '#dbd5ff',
+                            300: '#c4b5fd',
+                            400: '#a78bfa',
+                            500: '#8b5cf6',
+                            600: '#7c3aed',
+                            700: '#6d28d9',
+                            800: '#5b21b6',
+                            900: '#4c1d95',
+                        },
+                        orange: {
+                            50: '#fff7ed',
+                            100: '#ffedd5',
+                            200: '#fed7aa',
+                            300: '#fdba74',
+                            400: '#fb923c',
+                            500: '#f97316',
+                            600: '#ea580c',
+                            700: '#c2410c',
+                            800: '#9a3412',
+                            900: '#7c2d12',
+                            950: '#431407',
+                        },
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        };
+    </script>
+</head>
+<body>
+    <div th:replace="navbar::menuBar"></div>
+    <div class="body">
+        <main>
+            <!-- Hero Section -->
+            <section id="inicio" class="relative pt-12 pb-20 md:py-24 overflow-hidden">
+                <div class="absolute inset-0 z-0">
+                    <img
+                            src="https://images.pexels.com/photos/7089401/pexels-photo-7089401.jpeg"
+                            alt="Fondo médico"
+                            class="w-full h-full object-cover"
+                    />
+                    <div class="absolute inset-0 bg-gradient-to-r from-purple-900/80 to-purple-700/60"></div>
+                </div>
+
+                <div class="container mx-auto px-4 md:px-8 relative z-10">
+                    <div class="max-w-3xl">
+                        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
+                            VitalSanity
+                        </h1>
+
+                        <p class="text-xl md:text-2xl text-white font-medium mb-8 italic">
+                            La Aplicación Web donde el Paciente es el Protagonista
+                        </p>
+
+                        <p class="text-lg text-white/90 mb-10 max-w-2xl">
+                            Centraliza tu historial médico y otorga acceso seguro a tus profesionales de la salud.
+                            Mantén el control de tus datos médicos en un solo lugar con total seguridad.
+                        </p>
+
+                        <div class="flex flex-wrap gap-4">
+                            <a
+                                    th:href="@{/login}"
+                                    class="bg-white text-purple-800 px-6 py-3 rounded-md font-medium hover:bg-purple-50 transition duration-300 flex items-center group"
+                            >
+                                Comenzar ahora
+                                <i data-lucide="arrow-right" class="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform"></i>
+                            </a>
+                            <a
+                                    href="#como-funciona"
+                                    class="bg-transparent border-2 border-white text-white px-6 py-3 rounded-md font-medium hover:bg-white/10 transition duration-300"
+                            >
+                                Cómo funciona
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Features Section -->
+            <section id="beneficios" class="py-20 bg-purple-250">
+                <div class="container mx-auto px-4 md:px-8">
+                    <div class="text-center mb-16">
+                        <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
+                            Beneficios para pacientes y profesionales
+                        </h2>
+                        <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                            VitalSanity revoluciona la gestión de la información médica, proporcionando ventajas tanto para pacientes como para centros y profesionales médicos de la salud.
+                        </p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                        <div class="bg-purple-150 p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 text-center">
+                            <div class="flex justify-center">
+                                <i data-lucide="shield" class="w-12 h-12 text-purple-600 mb-4"></i>
+                            </div>
+                            <h3 class="text-xl font-semibold text-gray-800 mb-3">
+                                Privacidad Garantizada
+                            </h3>
+                            <p class="text-gray-600">
+                                Control total sobre quién puede acceder a tu información médica. Tú decides y autorizas a los profesionales.
+                            </p>
+                        </div>
+
+                        <div class="bg-purple-150 p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 text-center">
+                            <div class="flex justify-center">
+                                <i data-lucide="clock" class="w-12 h-12 text-purple-600 mb-4"></i>
+                            </div>
+                            <h3 class="text-xl font-semibold text-gray-800 mb-3">
+                                Acceso Inmediato
+                            </h3>
+                            <p class="text-gray-600">
+                                Historial médico disponible al instante para ti y los profesionales autorizados, sin esperas ni trámites.
+                            </p>
+                        </div>
+
+                        <div class="bg-purple-150 p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 text-center">
+                            <div class="flex justify-center">
+                                <i data-lucide="file-text" class="w-12 h-12 text-purple-600 mb-4"></i>
+                            </div>
+                            <h3 class="text-xl font-semibold text-gray-800 mb-3">
+                                Historial Centralizado
+                            </h3>
+                            <p class="text-gray-600">
+                                Toda tu información médica en un solo lugar: consultas, tratamientos, medicación, alergias y más.
+                            </p>
+                        </div>
+
+                        <div class="bg-purple-150 p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 text-center">
+                            <div class="flex justify-center">
+                                <i data-lucide="users" class="w-12 h-12 text-purple-600 mb-4"></i>
+                            </div>
+                            <h3 class="text-xl font-semibold text-gray-800 mb-3">
+                                Colaboración Médica
+                            </h3>
+                            <p class="text-gray-600">
+                                Facilita la comunicación entre diferentes especialistas para un mejor diagnóstico y tratamiento.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="mt-16 text-center">
+                        <a
+                                th:href="@{/login}"
+                                class="bg-purple-600 text-white px-8 py-3 rounded-md font-medium hover:bg-purple-700 transition duration-300 inline-block"
+                        >
+                            Descubre todos los beneficios
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- How It Works Section -->
+            <section id="como-funciona" class="py-20 bg-purple-700 text-white">
+                <div class="container mx-auto px-4 md:px-8">
+                    <div class="text-center mb-16">
+                        <h2 class="text-3xl md:text-4xl font-bold mb-4">
+                            ¿Cómo funciona VitalSanity?
+                        </h2>
+                        <p class="text-lg text-white/90 max-w-3xl mx-auto">
+                            Un proceso simple para revolucionar tu experiencia con el sistema de salud.
+                        </p>
+                    </div>
+
+                    <div class="relative">
+                        <div class="hidden md:block absolute top-1/2 left-0 right-0 h-1 bg-purple-500 -translate-y-1/2 z-0"></div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 relative z-10">
+                            <div class="flex flex-col items-center">
+                                <div class="flex items-center justify-center w-24 h-24 rounded-full bg-purple-600 border-4 border-purple-500 mb-6">
+                                    <i data-lucide="user-plus" class="w-12 h-12 text-white"></i>
+                                </div>
+                                <h3 class="text-xl font-semibold mb-3 text-center">Regístrate</h3>
+                                <p class="text-white/80 text-center">
+                                    Crea tu cuenta en VitalSanity con un proceso simple y seguro.
+                                </p>
+                            </div>
+
+                            <div class="flex flex-col items-center">
+                                <div class="flex items-center justify-center w-24 h-24 rounded-full bg-purple-600 border-4 border-purple-500 mb-6">
+                                    <i data-lucide="file-plus" class="w-12 h-12 text-white"></i>
+                                </div>
+                                <h3 class="text-xl font-semibold mb-3 text-center">Controla tu información</h3>
+                                <p class="text-white/80 text-center">
+                                    Controla y accede a tu historial médico, informes, resultados y medicación actual.
+                                </p>
+                            </div>
+
+                            <div class="flex flex-col items-center">
+                                <div class="flex items-center justify-center w-24 h-24 rounded-full bg-purple-600 border-4 border-purple-500 mb-6">
+                                    <i data-lucide="key" class="w-12 h-12 text-white"></i>
+                                </div>
+                                <h3 class="text-xl font-semibold mb-3 text-center">Administra permisos</h3>
+                                <p class="text-white/80 text-center">
+                                    Decide qué profesionales pueden acceder a tu información y por cuánto tiempo.
+                                </p>
+                            </div>
+
+                            <div class="flex flex-col items-center">
+                                <div class="flex items-center justify-center w-24 h-24 rounded-full bg-purple-600 border-4 border-purple-500 mb-6">
+                                    <i data-lucide="user-check" class="w-12 h-12 text-white"></i>
+                                </div>
+                                <h3 class="text-xl font-semibold mb-3 text-center">Atención mejorada</h3>
+                                <p class="text-white/80 text-center">
+                                    Disfruta de una atención médica más eficiente y personalizada.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-16 text-center">
+                        <div class="bg-white/10 p-6 md:p-8 rounded-lg max-w-3xl mx-auto">
+                            <h3 class="text-2xl font-semibold mb-4">
+                                ¿Eres un centro médico o profesional de la salud?
+                            </h3>
+                            <p class="mb-6 text-white/90">
+                                VitalSanity también ofrece herramientas especiales para centros médicos y profesionales sanitarios. Accede a historiales completos con autorización del paciente.
+                            </p>
+                            <a
+                                    href="#contacto"
+                                    class="bg-white text-purple-800 px-6 py-3 rounded-md font-medium hover:bg-purple-50 transition duration-300 inline-block"
+                            >
+                                Obtener más información
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Testimonials Section -->
+            <section id="testimonios" class="py-20 bg-purple-250">
+                <div class="container mx-auto px-4 md:px-8">
+                    <div class="text-center mb-16">
+                        <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
+                            Lo que dicen nuestros usuarios
+                        </h2>
+                        <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                            Descubre cómo VitalSanity está transformando la experiencia de pacientes y profesionales de la salud.
+                        </p>
+                    </div>
+
+                    <div class="relative max-w-4xl mx-auto">
+                        <!-- Testimonial Carousel -->
+                        <div id="testimonialCarousel" class="relative overflow-hidden">
+                            <!-- Testimonial 1 -->
+                            <div class="testimonial-slide active">
+                                <div class="bg-white rounded-xl shadow-lg overflow-hidden">
+                                    <div class="grid md:grid-cols-5">
+                                        <div class="md:col-span-2 bg-purple-600">
+                                            <div class="h-full relative">
+                                                <img
+                                                        src="https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=600"
+                                                        alt="María García Torres"
+                                                        class="w-full h-full object-cover"
+                                                />
+                                                <div class="absolute inset-0 bg-gradient-to-t from-purple-900/70 to-transparent flex flex-col justify-end p-6">
+                                                    <h3 class="text-xl font-semibold text-white">María García Torres</h3>
+                                                    <p class="text-white/90">Paciente</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="md:col-span-3 p-6 md:p-8 flex flex-col justify-center">
+                                            <div class="flex mb-4">
+                                                <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-current"></i>
+                                                <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-current"></i>
+                                                <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-current"></i>
+                                                <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-current"></i>
+                                                <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-current"></i>
+                                            </div>
+                                            <blockquote class="bg-purple-150 text-gray-700 text-lg mb-6 italic">
+                                                "Desde que uso VitalSanity, mis consultas médicas son mucho más eficientes. Los médicos tienen toda mi información a mano y no tengo que repetir mi historial cada vez."
+                                            </blockquote>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Testimonial 2 -->
+                            <div class="testimonial-slide">
+                                <div class="bg-white rounded-xl shadow-lg overflow-hidden">
+                                    <div class="grid md:grid-cols-5">
+                                        <div class="md:col-span-2 bg-purple-600">
+                                            <div class="h-full relative">
+                                                <img
+                                                        src="https://images.pexels.com/photos/5327585/pexels-photo-5327585.jpeg?auto=compress&cs=tinysrgb&w=600"
+                                                        alt="Dra. Paula Rodríguez Vázquez"
+                                                        class="w-full h-full object-cover"
+                                                />
+                                                <div class="absolute inset-0 bg-gradient-to-t from-purple-900/70 to-transparent flex flex-col justify-end p-6">
+                                                    <h3 class="text-xl font-semibold text-white">Dra. Paula Rodríguez Vázquez</h3>
+                                                    <p class="text-white/90">Médico de Familia</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="md:col-span-3 p-6 md:p-8 flex flex-col justify-center">
+                                            <div class="flex mb-4">
+                                                <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-current"></i>
+                                                <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-current"></i>
+                                                <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-current"></i>
+                                                <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-current"></i>
+                                                <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-current"></i>
+                                            </div>
+                                            <blockquote class="bg-purple-150 text-gray-700 text-lg mb-6 italic">
+                                                "Como médico, VitalSanity me permite tener una visión completa del historial de mis pacientes. Esto me ayuda a tomar mejores decisiones y ofrecer un tratamiento más personalizado."
+                                            </blockquote>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Testimonial 3 -->
+                            <div class="testimonial-slide">
+                                <div class="bg-white rounded-xl shadow-lg overflow-hidden">
+                                    <div class="grid md:grid-cols-5">
+                                        <div class="md:col-span-2 bg-purple-600">
+                                            <div class="h-full relative">
+                                                <img
+                                                        src="https://images.pexels.com/photos/1181686/pexels-photo-1181686.jpeg?auto=compress&cs=tinysrgb&w=600"
+                                                        alt="Laura Martínez Ramírez"
+                                                        class="w-full h-full object-cover"
+                                                />
+                                                <div class="absolute inset-0 bg-gradient-to-t from-purple-900/70 to-transparent flex flex-col justify-end p-6">
+                                                    <h3 class="text-xl font-semibold text-white">Laura Martínez Ramírez</h3>
+                                                    <p class="text-white/90">Paciente crónica</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="md:col-span-3 p-6 md:p-8 flex flex-col justify-center">
+                                            <div class="flex mb-4">
+                                                <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-current"></i>
+                                                <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-current"></i>
+                                                <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-current"></i>
+                                                <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-current"></i>
+                                                <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-current"></i>
+                                            </div>
+                                            <blockquote class="bg-purple-150 text-gray-700 text-lg mb-6 italic">
+                                                "Con VitalSanity tengo el control total de mi información médica. Puedo compartirla con nuevos especialistas instantáneamente, lo que facilita enormemente la gestión de mi condición crónica."
+                                            </blockquote>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Testimonial 4 -->
+                            <div class="testimonial-slide">
+                                <div class="bg-white rounded-xl shadow-lg overflow-hidden">
+                                    <div class="grid md:grid-cols-5">
+                                        <div class="md:col-span-2 bg-purple-600">
+                                            <div class="h-full relative">
+                                                <img
+                                                        src="https://images.pexels.com/photos/5214952/pexels-photo-5214952.jpeg?auto=compress&cs=tinysrgb&w=600"
+                                                        alt="Dra. Ana Sánchez Molina"
+                                                        class="w-full h-full object-cover"
+                                                />
+                                                <div class="absolute inset-0 bg-gradient-to-t from-purple-900/70 to-transparent flex flex-col justify-end p-6">
+                                                    <h3 class="text-xl font-semibold text-white">Dra. Ana Sánchez Molina</h3>
+                                                    <p class="text-white/90">Cardióloga</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="md:col-span-3 p-6 md:p-8 flex flex-col justify-center">
+                                            <div class="flex mb-4">
+                                                <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-current"></i>
+                                                <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-current"></i>
+                                                <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-current"></i>
+                                                <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-current"></i>
+                                                <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-current"></i>
+                                            </div>
+                                            <blockquote class="bg-purple-150 text-gray-700 text-lg mb-6 italic">
+                                                "La plataforma es intuitiva y me permite acceder rápidamente a la información relevante de cada paciente. La comunicación con otros especialistas también es mucho más fluida."
+                                            </blockquote>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Carousel Controls -->
+                        <button
+                                onclick="prevSlide()"
+                                class="absolute top-1/2 -left-4 md:-left-12 transform -translate-y-1/2 bg-white p-3 rounded-full shadow-md hover:bg-gray-100 transition-colors z-10"
+                                aria-label="Previous testimonial"
+                        >
+                            <i data-lucide="chevron-left" class="w-6 h-6 text-gray-600"></i>
+                        </button>
+
+                        <button
+                                onclick="nextSlide()"
+                                class="absolute top-1/2 -right-4 md:-right-12 transform -translate-y-1/2 bg-white p-3 rounded-full shadow-md hover:bg-gray-100 transition-colors z-10"
+                                aria-label="Next testimonial"
+                        >
+                            <i data-lucide="chevron-right" class="w-6 h-6 text-gray-600"></i>
+                        </button>
+
+                        <!-- Carousel Indicators -->
+                        <div class="flex justify-center mt-6 space-x-2">
+                            <button onclick="goToSlide(0)" class="w-3 h-3 rounded-full bg-purple-600" aria-label="Go to slide 1"></button>
+                            <button onclick="goToSlide(1)" class="w-3 h-3 rounded-full bg-purple-600" aria-label="Go to slide 2"></button>
+                            <button onclick="goToSlide(2)" class="w-3 h-3 rounded-full bg-purple-600" aria-label="Go to slide 3"></button>
+                            <button onclick="goToSlide(3)" class="w-3 h-3 rounded-full bg-purple-600" aria-label="Go to slide 4"></button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Contact Section -->
+            <section id="contacto" class="py-20 bg-purple-150">
+                <div class="container mx-auto px-4 md:px-8">
+                    <div class="grid md:grid-cols-2 gap-12 items-center">
+                        <div>
+                            <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-6">
+                                ¿Listo para revolucionar tu experiencia médica?
+                            </h2>
+
+                            <p class="text-lg text-gray-600 mb-8">
+                                Contáctanos hoy mismo para obtener más información o comenzar a utilizar VitalSanity. Estamos aquí para responder a todas tus preguntas.
+                            </p>
+
+                            <div class="space-y-6">
+                                <div class="flex items-start">
+                                    <i data-lucide="smartphone" class="w-6 h-6 text-purple-600 mr-4 mt-1 flex-shrink-0"></i>
+                                    <div>
+                                        <h3 class="font-medium text-gray-800">Teléfono</h3>
+                                        <p class="text-gray-600">+34 911 22 33 44</p>
+                                    </div>
+                                </div>
+
+                                <div class="flex items-start">
+                                    <i data-lucide="mail" class="w-6 h-6 text-purple-600 mr-4 mt-1 flex-shrink-0"></i>
+                                    <div>
+                                        <h3 class="font-medium text-gray-800">Email</h3>
+                                        <p class="text-gray-600">vital@sanity.es</p>
+                                    </div>
+                                </div>
+
+                                <div class="flex items-start">
+                                    <i data-lucide="map-pin" class="w-6 h-6 text-purple-600 mr-4 mt-1 flex-shrink-0"></i>
+                                    <div>
+                                        <h3 class="font-medium text-gray-800">Dirección</h3>
+                                        <p class="text-gray-600">Calle Innovación, 123<br />28001 Madrid, España</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="bg-purple-250 rounded-lg p-6 md:p-8 shadow-md">
+                                <h3 class="text-2xl font-semibold text-gray-800 mb-6">Envíanos un mensaje</h3>
+
+                                <form id="contactForm" class="space-y-4">
+                                    <div>
+                                        <label for="userType" class="block text-sm font-medium text-gray-700 mb-1">
+                                            Soy un:
+                                        </label>
+                                        <select
+                                                id="userType"
+                                                name="userType"
+                                                class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-purple-500 focus:border-purple-500"
+                                                required
+                                        >
+                                            <option value="patient">Paciente</option>
+                                            <option value="professional">Profesional sanitario</option>
+                                            <option value="professional">Centro médico</option>
+                                        </select>
+                                    </div>
+
+                                    <div>
+                                        <label for="name" class="block text-sm font-medium text-gray-700 mb-1">
+                                            Nombre completo
+                                        </label>
+                                        <input
+                                                type="text"
+                                                id="name"
+                                                name="name"
+                                                class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-purple-500 focus:border-purple-500"
+                                                required
+                                        />
+                                    </div>
+
+                                    <div>
+                                        <label for="email" class="block text-sm font-medium text-gray-700 mb-1">
+                                            Email
+                                        </label>
+                                        <input
+                                                type="email"
+                                                id="email"
+                                                name="email"
+                                                class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-purple-500 focus:border-purple-500"
+                                                required
+                                        />
+                                    </div>
+
+                                    <div>
+                                        <label for="phone" class="block text-sm font-medium text-gray-700 mb-1">
+                                            Teléfono
+                                        </label>
+                                        <input
+                                                type="tel"
+                                                id="phone"
+                                                name="phone"
+                                                class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-purple-500 focus:border-purple-500"
+                                        />
+                                    </div>
+
+                                    <div>
+                                        <label for="message" class="block text-sm font-medium text-gray-700 mb-1">
+                                            Mensaje
+                                        </label>
+                                        <textarea
+                                                id="message"
+                                                name="message"
+                                                rows="4"
+                                                class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-purple-500 focus:border-purple-500"
+                                                required
+                                        ></textarea>
+                                    </div>
+
+                                    <button
+                                            type="submit"
+                                            class="w-full bg-purple-600 text-white py-3 px-6 rounded-md font-medium hover:bg-purple-700 transition duration-300 flex items-center justify-center"
+                                    >
+                                        Enviar mensaje
+                                        <i data-lucide="send" class="ml-2 w-4 h-4"></i>
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="bg-gray-900 text-white pt-16 pb-8">
+            <div class="container mx-auto px-4 md:px-8">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+                    <div>
+                        <div class="flex items-center mb-4">
+                            <i data-lucide="activity" class="h-7 w-7 text-purple-400"></i>
+                            <span class="ml-2 text-xl font-bold">VitalSanity</span>
+                        </div>
+                        <p class="text-gray-400 mb-6">
+                            La plataforma que revoluciona la gestión de información médica, poniendo al paciente en el centro.
+                        </p>
+                        <div class="flex space-x-4">
+                            <a href="#" class="text-gray-400 hover:text-purple-400 transition duration-300">
+                                <i data-lucide="facebook" class="w-5 h-5"></i>
+                            </a>
+                            <a href="#" class="text-gray-400 hover:text-purple-400 transition duration-300">
+                                <i data-lucide="twitter" class="w-5 h-5"></i>
+                            </a>
+                            <a href="#" class="text-gray-400 hover:text-purple-400 transition duration-300">
+                                <i data-lucide="instagram" class="w-5 h-5"></i>
+                            </a>
+                            <a href="#" class="text-gray-400 hover:text-purple-400 transition duration-300">
+                                <i data-lucide="linkedin" class="w-5 h-5"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h3 class="text-lg font-semibold mb-4">Enlaces rápidos</h3>
+                        <ul class="space-y-2">
+                            <li>
+                                <a href="#inicio" class="text-gray-400 hover:text-purple-400 transition duration-300">Inicio</a>
+                            </li>
+                            <li>
+                                <a href="#beneficios" class="text-gray-400 hover:text-purple-400 transition duration-300">Beneficios</a>
+                            </li>
+                            <li>
+                                <a href="#como-funciona" class="text-gray-400 hover:text-purple-400 transition duration-300">Cómo funciona</a>
+                            </li>
+                            <li>
+                                <a href="#testimonios" class="text-gray-400 hover:text-purple-400 transition duration-300">Testimonios</a>
+                            </li>
+                            <li>
+                                <a href="#contacto" class="text-gray-400 hover:text-purple-400 transition duration-300">Contacto</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h3 class="text-lg font-semibold mb-4">Legal</h3>
+                        <ul class="space-y-2">
+                            <li>
+                                <a href="#" class="text-gray-400 hover:text-purple-400 transition duration-300">Términos y condiciones</a>
+                            </li>
+                            <li>
+                                <a th:href="${urlPrefirmadaPoliticaPrivacidad}" target="_blank" class="text-gray-400 hover:text-purple-400 transition duration-300">Política de privacidad</a>
+                            </li>
+                            <li>
+                                <a href="#" class="text-gray-400 hover:text-purple-400 transition duration-300">Política de cookies</a>
+                            </li>
+                            <li>
+                                <a href="#" class="text-gray-400 hover:text-purple-400 transition duration-300">Aviso legal</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h3 class="text-lg font-semibold mb-4">Contacto</h3>
+                        <ul class="space-y-2 text-gray-400">
+                            <li>Calle Innovación, 123</li>
+                            <li>28001 Madrid, España</li>
+                            <li>vital@sanity.es</li>
+                            <li>+34 911 22 33 44</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="border-t border-gray-800 pt-8">
+                    <p class="text-center text-gray-500">
+                        &copy; <script>document.write(new Date().getFullYear())</script> VitalSanity. Todos los derechos reservados.
+                    </p>
+                </div>
+            </div>
+        </footer>
+
+        <script>
+            // Initialize Lucide icons
+            lucide.createIcons();
+
+            // Testimonials Carousel
+            let currentSlide = 0;
+            const slides = document.querySelectorAll('.testimonial-slide');
+            const indicators = document.querySelectorAll('.flex.justify-center.mt-6 button');
+            const totalSlides = slides.length;
+            let autoplayInterval;
+
+            function updateSlides() {
+                slides.forEach((slide, index) => {
+                    slide.classList.remove('active');
+                    indicators[index].classList.remove('bg-purple-600');
+                    indicators[index].classList.add('bg-gray-300');
+                });
+
+                slides[currentSlide].classList.add('active');
+                indicators[currentSlide].classList.remove('bg-gray-300');
+                indicators[currentSlide].classList.add('bg-purple-600');
+            }
+
+            function nextSlide() {
+                currentSlide = (currentSlide + 1) % totalSlides;
+                updateSlides();
+                resetAutoplay();
+            }
+
+            function prevSlide() {
+                currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+                updateSlides();
+                resetAutoplay();
+            }
+
+            function goToSlide(index) {
+                currentSlide = index;
+                updateSlides();
+                resetAutoplay();
+            }
+
+            function startAutoplay() {
+                autoplayInterval = setInterval(nextSlide, 5000);
+            }
+
+            function resetAutoplay() {
+                clearInterval(autoplayInterval);
+                startAutoplay();
+            }
+
+            // Start autoplay
+            startAutoplay();
+
+            // Handle contact form submission
+            document.getElementById('contactForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('Formulario enviado con éxito. ¡Gracias por contactarnos!');
+                this.reset();
+            });
+
+        </script>
+    </div>
+    <div th:replace="navbar::javascript"></div>
+</body>
+</html>

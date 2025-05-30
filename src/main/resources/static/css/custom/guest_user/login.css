@@ -1,0 +1,146 @@
+/* Body styles */
+.page-container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #DBD5FF;
+    padding: 1.25rem; /* 20px */
+}
+
+/* Login form container */
+.login-container {
+    background-color: #6528BF;
+    padding: 2.5rem; /* 40px */
+    border-radius: 1rem; /* 16px */
+    width: 100%;
+    max-width: 25rem; /* 400px */
+    box-shadow: 0 0.25rem 0.375rem rgba(0, 0, 0, 0.1); /* 4px 6px */
+}
+
+/* Form title */
+.form-title {
+    color: #FFFFFF;
+    font-size: 1.75rem; /* 28px */
+    text-align: center;
+    margin-bottom: 1.875rem; /* 30px */
+    font-weight: 500;
+}
+
+/* Form group */
+.form-group {
+    margin-bottom: 1.25rem; /* 20px */
+}
+
+/* Labels */
+.form-label {
+    display: block;
+    color: #F5F3FF;
+    margin-bottom: 0.5rem; /* 8px */
+    font-size: 1rem; /* 16px */
+    font-weight: bold;
+}
+
+/* Input fields */
+.form-input {
+    width: 100%;
+    padding: 0.625rem; /* 10px */
+    border: none;
+    border-radius: 0.375rem; /* 6px */
+    background-color: #f5f5f5;
+    font-size: 0.875rem; /* 14px */
+}
+
+/* Submit button */
+.submit-button {
+    background-color: #F5F3FF;
+    color: #717171;
+    padding: 0.625rem 1.5rem; /* 10px 24px */
+    border: none;
+    border-radius: 0.375rem; /* 6px */
+    cursor: pointer;
+    font-size: 1rem; /* 16px */
+    float: right;
+    transition: background-color 0.2s;
+}
+
+.submit-button:hover {
+    background-color: #f0f0f0;
+}
+
+/* Digital certificate link */
+.certificate-link {
+    display: block;
+    text-align: center;
+    margin-top: 1.5rem; /* 32px */
+    text-decoration: none;
+    background-color: #3b82f6;
+    padding: 0.75rem 1.5rem; /* 12px 24px */
+    border-radius: 1.5rem; /* 24px */
+    color: #ffffff;
+    font-size: 0.875rem; /* 14px */
+    font-weight: bold;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.certificate-link:hover {
+    background-color: #2563eb;
+}
+
+/* Mensaje de registro debajo del botón */
+.register-message {
+    text-align: center;
+    margin: 1.25rem 0; /* 20px 0 */
+}
+
+.register-message p {
+    margin: 0;
+    color: #F5F3FF;
+    font-size: 1.03125rem; /* 16.5px */
+    font-weight: 500;
+}
+
+.register-message .register-link {
+    color: #FFD700;
+    font-weight: 600;
+    text-decoration: underline;
+    margin-left: 0.25rem; /* 4px */
+    transition: color 0.2s;
+}
+
+.register-message .register-link:hover {
+    color: #FFF176;
+    text-decoration: none;
+}
+
+/* Error message */
+.error-message {
+    color: #ef5c9c;
+    font-size: 1.03125rem; /* 16.5px */
+    text-align: center;
+    margin-bottom: 1.875rem; /* 30px */
+    font-weight: bold;
+}
+
+/* Responsive adjustments */
+@media (max-width: 30rem) { /* 480px = 30rem */
+    .login-container {
+        padding: 1.25rem; /* 20px */
+    }
+
+    .form-title {
+        font-size: 1.5rem; /* 24px */
+    }
+
+    .form-label {
+        font-size: 0.875rem; /* 14px */
+    }
+
+    .submit-button {
+        width: 100%;
+        margin-top: 0.625rem; /* 10px */
+    }
+}

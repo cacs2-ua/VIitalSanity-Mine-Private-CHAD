@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Informes del Paciente</title>
+  <style>
+    /* Custom CSS styles using relative units */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background-color: #DBD5FF;
+    }
+
+    .page-container {
+      min-height: 100vh;
+      padding: 1.25rem; /* Changed from 20px */
+      max-width: 75rem; /* Changed from 1200px */
+      margin: 0 auto;
+    }
+
+    .header {
+      text-align: center;
+      text-decoration: underline; /* Underlines the entire header */
+      padding-top: 1.875rem; /* Changed from 30px */
+      margin-bottom: 1.875rem; /* Changed from 30px */
+      font-size: 1.85rem; /* Changed from 30px approximate to 1.85rem */
+    }
+
+    /* NEW: .dni rule to ensure the DNI appears with normal font weight */
+    .dni {
+      font-weight: normal;
+    }
+
+    .filter-section {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.625rem; /* Changed from 10px */
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 1.875rem; /* Changed from 30px */
+    }
+
+    .input-group {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      font-weight: bold;
+    }
+
+    .input-group label {
+      margin-bottom: 0.3125rem; /* Changed from 5px */
+      font-size: 0.875rem; /* Changed from 14px */
+    }
+
+    .filter-input {
+      padding: 0.5rem; /* Changed from 8px */
+      border: 0.0625rem solid #ccc; /* Changed from 1px */
+      border-radius: 0.25rem; /* Changed from 4px */
+      width: 6.25rem; /* Changed from 100px */
+      height: 2.1875rem; /* Changed from 35px */
+      background-color: #F5F3FF;
+    }
+
+    .date-input {
+      width: 7.5rem; /* Changed from 120px */
+    }
+
+    .checkbox-container {
+      display: flex;
+      flex-direction: column; /* Stack elements vertically */
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+    }
+
+    .checkbox-container .checkbox-input {
+      order: 2; /* Place the checkbox below */
+      width: 1.875rem;  /* Changed from 27.5px (approx 30px) */
+      height: 1.875rem; /* Changed from 27.5px */
+      margin: 0;
+      margin-top: 0.125rem; /* Changed from 1px */
+    }
+
+    .checkbox-container span {
+      order: 1; /* Place the span above the checkbox */
+      margin-bottom: 0.3125rem; /* Changed from 5px */
+    }
+
+    .button-primary {
+      background-color: #8433FF;
+      color: white;
+      border: none;
+      border-radius: 1.25rem; /* Changed from 20px */
+      padding: 0.5rem 0.9375rem; /* Changed from 8px 15px */
+      cursor: pointer;
+      font-weight: bold;
+      align-self: center;
+      margin-top: 1.40625rem; /* Changed from 22.5px */
+      transition: background-color 0.3s ease, transform 0.3s ease; /* Hover effect transition */
+    }
+
+    .button-primary:hover {
+      background-color: #752CE0; /* Slightly darker shade */
+      transform: scale(1.05);
+    }
+
+    .button-create {
+      background-color: #4643FF;
+      color: white;
+      border: none;
+      border-radius: 1.25rem; /* Changed from 20px */
+      padding: 0.625rem 1.25rem; /* Changed from 10px 20px */
+      cursor: pointer;
+      margin: 1.25rem auto; /* Changed from 20px auto */
+      display: block;
+      font-weight: bold;
+      margin-bottom: 1.875rem; /* Changed from 30px */
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+    .button-create:hover {
+      background-color: #3B3BF0;
+      transform: scale(1.05);
+    }
+
+    .report-card {
+      background-color: #F5F3FF;
+      border-radius: 0.625rem; /* Changed from 10px */
+      padding: 1.25rem; /* Changed from 20px */
+      margin-bottom: 1.875rem; /* Changed from 30px */
+      box-shadow: 0 0.125rem 0.3125rem rgba(0, 0, 0, 0.1); /* Changed from 0 2px 5px */
+    }
+
+    .report-id {
+      text-align: center;
+      text-decoration: underline; /* Underline the entire "Id. informe: <number>" block */
+      margin-bottom: 0.9375rem; /* Changed from 15px */
+      font-size: 1.85rem; /* Changed from 18px */
+    }
+
+    .report-number {
+      font-weight: normal; /* Report number appears normal */
+    }
+
+    .report-detail {
+      margin-bottom: 0.5rem; /* Changed from 8px */
+    }
+
+    .report-detail strong {
+      font-weight: bold;
+    }
+
+    .button-container {
+      display: flex;
+      justify-content: flex-end;
+      gap: 0.625rem; /* Changed from 10px */
+      margin-top: 0.9375rem; /* Changed from 15px */
+    }
+
+    .button-edit {
+      background-color: #7D82EA;
+      color: black;
+      border: none;
+      border-radius: 1.25rem; /* Changed from 20px */
+      padding: 0.5rem 0.9375rem; /* Changed from 8px 15px */
+      cursor: pointer;
+      width: 7rem;
+      font-weight: bold;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+    .button-edit:hover {
+      background-color: #6A72D0;
+      transform: scale(1.05);
+    }
+
+    .button-view {
+      background-color: #88A9FD;
+      color: black;
+      border: none;
+      border-radius: 1.25rem; /* Changed from 20px */
+      padding: 0.5rem 0.9375rem; /* Changed from 8px 15px */
+      cursor: pointer;
+      width: 7rem;
+      font-weight: bold;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+    .button-view:hover {
+      background-color: #7AA2F0;
+      transform: scale(1.05);
+    }
+
+    /* Responsive styles */
+    @media (max-width: 48rem) { /* 48rem = 768px assuming 16px base */
+      .filter-section {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      
+      .filter-input {
+        width: 100%;
+      }
+      
+      .date-input {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-container">
+    <!-- Modified header with separate styling for label and DNI -->
+    <h2 class="header"><strong>Informes del paciente con NIF:</strong> <span class="dni">67890123T</span></h2>
+    
+    <!-- Filter Section -->
+    <div class="filter-section">
+      <div class="input-group">
+        <label for="input-id">Id</label>
+        <input type="text" id="input-id" class="filter-input">
+      </div>
+      <div class="input-group">
+        <label for="input-centro">Centro</label>
+        <input type="text" id="input-centro" class="filter-input">
+      </div>
+      <div class="input-group">
+        <label for="input-profesional">Profesional</label>
+        <input type="text" id="input-profesional" class="filter-input">
+      </div>
+      <div class="input-group">
+        <label for="input-especialidad">Especialidad</label>
+        <input type="text" id="input-especialidad" class="filter-input">
+      </div>
+      <div class="input-group">
+        <label for="input-fecha-desde">Fecha desde</label>
+        <input type="date" id="input-fecha-desde" class="filter-input date-input">
+      </div>
+      <div class="input-group">
+        <label for="input-fecha-hasta">Fecha hasta</label>
+        <input type="date" id="input-fecha-hasta" class="filter-input date-input">
+      </div>
+      <div class="checkbox-container">
+        <span>Informes Propios</span>
+        <input type="checkbox" class="checkbox-input">
+      </div>
+      <button class="button-primary">Aplicar filtros</button>
+    </div>
+    
+    <!-- Create New Report Button -->
+    <button class="button-create">Crear nuevo informe</button>
+    
+    <!-- Report Cards -->
+    <div class="report-card">
+      <div class="report-id"><strong>Id. informe:</strong> <span class="report-number">20939676</span></div>
+      <div class="report-detail"><strong>Título:</strong> Resonancia Magnética</div>
+      <div class="report-detail"><strong>Fecha:</strong> 17/12/2024 17:45</div>
+      <div class="report-detail"><strong>Centro médico:</strong> Vithas Alicante</div>
+      <div class="report-detail"><strong>Profesional médico:</strong> Juan Martínez Fernández</div>
+      <div class="report-detail"><strong>Especialidad médica:</strong> Traumatología</div>
+      <div class="report-detail"><strong>Provincia:</strong> Alicante</div>
+      <div class="report-detail"><strong>Municipio:</strong> San Vicente del Raspeig</div>
+      <div class="button-container">
+        <button class="button-edit">Editar</button>
+        <button class="button-view">Ver Detalles</button>
+      </div>
+    </div>
+    
+    <div class="report-card">
+      <div class="report-id"><strong>Id. informe:</strong> <span class="report-number">37142984</span></div>
+      <div class="report-detail"><strong>Título:</strong> Biopsia de piel</div>
+      <div class="report-detail"><strong>Fecha:</strong> 12/10/2024 16:30</div>
+      <div class="report-detail"><strong>Centro médico:</strong> Quirón Salud Alicante</div>
+      <div class="report-detail"><strong>Profesional médico:</strong> Laura Sánchez Rodríguez</div>
+      <div class="report-detail"><strong>Especialidad médica:</strong> Dermatología</div>
+      <div class="report-detail"><strong>Provincia:</strong> Alicante</div>
+      <div class="report-detail"><strong>Municipio:</strong> Altea</div>
+      <div class="button-container">
+        <button class="button-edit">Editar</button>
+        <button class="button-view">Ver Detalles</button>
+      </div>
+    </div>
+    
+    <div class="report-card">
+      <div class="report-id"><strong>Id. informe:</strong> <span class="report-number">75138715</span></div>
+      <div class="report-detail"><strong>Título:</strong> Cateterismo cardíaco</div>
+      <div class="report-detail"><strong>Fecha:</strong> 06/09/2024 11:15</div>
+      <div class="report-detail"><strong>Centro médico:</strong> Adeslas Ciudad Real</div>
+      <div class="report-detail"><strong>Profesional médico:</strong> Carlos Hernández Ruiz</div>
+      <div class="report-detail"><strong>Especialidad médica:</strong> Cardiología</div>
+      <div class="report-detail"><strong>Provincia:</strong> Ciudad Real</div>
+      <div class="report-detail"><strong>Municipio:</strong> Puertollano</div>
+      <div class="button-container">
+        <button class="button-edit">Editar</button>
+        <button class="button-view">Ver Detalles</button>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

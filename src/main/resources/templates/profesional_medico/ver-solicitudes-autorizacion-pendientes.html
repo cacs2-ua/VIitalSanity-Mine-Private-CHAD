@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solicitudes de Autorización del paciente</title>
+    <div th:include="navbar :: head (titulo='Solicitudes de Autorización del paciente')"></div>
+    <link rel="stylesheet" th:href="@{/css/custom/global/global.css}">
+    <link rel="stylesheet" th:href="@{/css/custom/paciente/ver-notificaciones-de-autorizacion.css}">
+
+    <script th:inline="javascript">
+        const contextPath = /*[[${contextPath}]]*/ '';
+    </script>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+</head>
+<body>
+<div th:replace="navbar::menuBar"></div>
+<div class="body">
+    <div class="page-container">
+        <!-- Modified header with separate styling for label and DNI -->
+        <h2 class="header"><strong>Solicitudes de autorización</strong></h2>
+
+        <!-- Report Cards -->
+        <div th:each="solicitudAutorizacion: ${solicitudesAutorizacion}" class="report-card">
+            <div class="report-id"><strong>Nombre completo del paciente: </strong> <span th:text="${solicitudAutorizacion.paciente.usuario.nombreCompleto}" class="report-number"></span></div>
+            <div class="report-detail"><strong>Nº del documento de identidad del paciente: </strong> <span th:text="${solicitudAutorizacion.paciente.usuario.nifNie}"></span> </div>
+            <div class="report-detail"><strong>Edad del paciente: </strong> <span th:text="${solicitudAutorizacion.paciente.edad}"> </span> </div>
+            <div class="report-detail"><strong>Motivo de la solicitud: </strong> <span th:text="${solicitudAutorizacion.motivo}"></span></div>
+            <div class="report-detail"><strong>Descripción de la solicitud: </strong> <span th:text="${solicitudAutorizacion.descripcion}"></span></div>
+            <div class="report-detail"><strong>Fecha de creación de la solicitud: </strong> <span th:text="${solicitudAutorizacion.fechaCreacion}"></span> </div>
+        </div>
+
+        <div th:if="${noHaySolicitudes == true}" class="no-authorization-requests">
+            <p>No existe actualmente ninguna solicitud de autorización pendiente</p>
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ===== MODAL / POP-UP CONTAINER (NEW) ===== -->
+<div id="popupOverlay" class="popup-overlay">
+    <div class="popup-window">
+        <button id="popupClose" class="popup-close">X</button>
+        <!-- The iframe loads the second HTML file. NOTE: Use a dynamic URL if needed -->
+        <iframe class="popup-iframe"></iframe>
+
+
+    </div>
+</div>
+
+<div th:replace="navbar::javascript"></div>
+
+<div th:replace="footer :: footer"></div>
+
+<script>
+    lucide.createIcons();
+</script>
+
+</body>
+</html>

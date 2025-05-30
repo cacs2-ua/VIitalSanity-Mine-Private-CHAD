@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Crear nuevo informe</title>
+  <style>
+    /* Reset and base styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background-color: #DBD5FF;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      padding: 1rem;
+    }
+
+    /* Typography */
+    .page-title {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      text-align: center;
+      text-decoration: underline;
+    }
+
+    /* Form container */
+    .form-container {
+      background-color: #6528BF;
+      border-radius: 0.5rem;
+      width: 100%;
+      max-width: 35rem;
+      padding: 1rem;
+      color: white;
+    }
+
+    /* Form sections */
+    .form-section {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-field {
+      margin-bottom: 1rem;
+    }
+
+    .form-label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: bold;
+    }
+
+    .required::before {
+      content: "*";
+      color: white;
+    }
+
+    .form-input, .form-textarea {
+      width: 100%;
+      padding: 0.5rem;
+      border-radius: 0.25rem;
+      border: none;
+      background-color: #F5F3FF;
+    }
+
+    .form-textarea {
+      min-height: 5rem;
+      resize: vertical;
+    }
+
+    /* Modified: Underline the entire ID block and combine the text */
+    .form-id {
+      display: flex;
+      margin-bottom: 1rem;
+      justify-content: center;
+      text-decoration: underline; /* Underlines all content including spaces */
+    }
+
+    /* New combined ID class; the <strong> tag inside ensures bold for "Id. informe:" */
+    .form-id-combined {
+      font-size: 1.5rem;
+    }
+
+    /* Attachments section */
+    .attachments-title {
+      text-align: center;
+      margin-bottom: 1rem;
+      font-size: 1.2rem;
+      text-decoration: underline;
+    }
+
+    .attachment-button {
+      background-color: #c0c0c0;
+      color: black;
+      border: none;
+      padding: 0.25rem 0.5rem;
+      border-radius: 0.25rem;
+      cursor: pointer;
+      display: block;
+      margin: 0 auto 1rem;
+      font-weight: bold;
+      /* NEW: Added transition for hover effect */
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+    /* NEW: Hover effect for the "Adjuntar Ficheros" button */
+    .attachment-button:hover {
+      background-color: #a9a9a9;
+      transform: scale(1.05);
+    }
+
+    .attachment-icon {
+      display: inline-block;
+      margin-left: 0.25rem;
+    }
+
+    .attachments-list {
+      background-color: #F5F3FF;
+      border-radius: 0.25rem;
+      padding: 0.5rem;
+      margin-top: 1rem;
+    }
+
+    .attachment-item {
+      color: blue;
+      text-decoration: none;
+      display: block;
+      padding: 0.5rem;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    .attachment-item:hover {
+      text-decoration: underline;
+    }
+
+    /* Submit button */
+    .submit-container {
+      text-align: center;
+      margin-top: 1.5rem;
+    }
+
+    .submit-button {
+      background-color: #4643FF;
+      color: white;
+      border: none;
+      padding: 0.5rem 2rem;
+      border-radius: 1.5rem;
+      font-size: 1rem;
+      cursor: pointer;
+      font-weight: bold;
+      /* NEW: Added transition for hover effect */
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+    .submit-button:hover {
+      background-color: #303f9f;
+      transform: scale(1.05);
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 600px) {
+      .form-container {
+        padding: 0.75rem;
+      }
+      
+      .page-title {
+        font-size: 1.25rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1 class="page-title">Crear nuevo informe</h1>
+  
+  <div class="form-container">
+    <div class="form-section">
+      <!-- Modified: Combined the ID text into a single span -->
+      <div class="form-id">
+        <span class="form-id-combined"><strong>Id. informe:</strong> 20939676</span>
+      </div>
+      
+      <div class="form-field">
+        <label class="form-label required">Título del informe:</label>
+        <input type="text" class="form-input" value="Resonancia Magnética">
+      </div>
+      
+      <div class="form-field">
+        <label class="form-label required">Descripción:</label>
+        <textarea class="form-textarea">Informe de resonancia magnética realizado para evaluar posibles lesiones traumáticas de sistema músculo-esquelético. Estudio realizado en el Hospital Vithas Alicante por el Dr. Juan Martínez Fernández, especialista en traumatología.</textarea>
+      </div>
+      
+      <div class="form-field">
+        <label class="form-label">Observaciones:</label>
+        <textarea class="form-textarea">El informe muestra hallazgos compatibles con el diagnóstico inicial. Se recomienda continuar con la exploración clínica y posibles pruebas adicionales si los síntomas persisten o se agravan.</textarea>
+      </div>
+    </div>
+    
+    <div class="form-section">
+      <h2 class="attachments-title">Ficheros adjuntos</h2>
+      
+      <button class="attachment-button">
+        Adjuntar Ficheros
+        <span class="attachment-icon">▼</span>
+      </button>
+      
+      <div class="attachments-list">
+        <a href="#" class="attachment-item">Imagenes_RMN.pdf</a>
+        <a href="#" class="attachment-item">Diagnostico_Preliminar.pdf</a>
+        <a href="#" class="attachment-item">Recomendaciones_Clinicas.pdf</a>
+        <a href="#" class="attachment-item">Analisis_Comparativo.pdf</a>
+      </div>
+    </div>
+  </div>
+  
+  <div class="submit-container">
+    <button class="submit-button">Enviar</button>
+  </div>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Completar datos de residencia</title>
+    <div th:include="navbar :: head (titulo='Completar datos de residencia')"></div>
+    <link rel="stylesheet" th:href="@{/css/custom/global/global.css}">
+    <link rel="stylesheet" th:href="@{/css/custom/paciente/completar-datos-residencia.css}">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+
+</head>
+<body>
+<div th:replace="navbar::menuBar"></div>
+<div class="page-container">
+    <div class="login-container">
+        <h1 class="form-title">Complete sus datos de residencia</h1>
+        <!-- Se establece el objeto de comando "residenciaData" y se define la acción con el id del usuario -->
+        <form th:object="${residenciaData}"
+              th:action="@{/api/paciente/{idPaciente}/datos-residencia(idPaciente=${usuario.id})}"
+              method="post">
+            <div class="form-group">
+                <label class="form-label" for="provincia">Provincia*</label>
+                <input type="text" id="provincia" class="form-input" th:field="*{provincia}" required placeholder="Alicante">
+            </div>
+            <div class="form-group">
+                <label class="form-label" for="municipio">Municipio*</label>
+                <input type="text" id="municipio" class="form-input" th:field="*{municipio}" required placeholder="San Vicente del Raspeig">
+            </div>
+            <div class="form-group">
+                <label class="form-label" for="codigoPostal">Código Postal*</label>
+                <input type="text" id="codigoPostal" class="form-input" th:field="*{codigoPostal}" required placeholder="03690">
+            </div>
+            <button type="submit" class="submit-button">Aceptar</button>
+        </form>
+    </div>
+</div>
+<div th:replace="navbar::javascript"></div>
+
+<div th:replace="footer :: footer"></div>
+
+<script>
+    lucide.createIcons();
+</script>
+</body>
+</html>
