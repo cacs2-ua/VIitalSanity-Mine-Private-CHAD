@@ -21,4 +21,4 @@ EXPOSE 11443
 
 USER appuser
 
-CMD ["java", "-jar", "app.jar", "--spring.profiles.active=prod"]
+CMD ["java", "-jar", "app.jar", "--spring.profiles.active=docker"]
