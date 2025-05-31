@@ -70,7 +70,7 @@ En este caso, es necesario tener instalado lo siguiente:
 Teniendo esos requisitos instalados, la aplicación también puede ser ejecutada mediante los siguientes comandos:
 
 En primer lugar, ejecutar este comando para levantar la base de datos de ‘**PostgreSQL**‘
-en un contenedor de ‘**Docker**‘
+en un contenedor de ‘**Docker**‘.
 
 ```sh
 docker run --name postgres-vitalsanity-develop -e POSTGRES_USER=vital -e POSTGRES_PASSWORD=vital -e POSTGRES_DB=vital -p 5058:5432 -d postgres:13
@@ -83,7 +83,9 @@ perfil de **postgres**:
 mvn spring-boot:run -D spring-boot.run.profiles=postgres
 ```
 
-Por último, es necesario ejecutar manualmente el fichero de seeders **_resources/sql/database-script/seed_develop_db.sql_**
+Por último, en este caso es necesario ejecutar manualmente el fichero de seeders **_resources/sql/database-script/seed_develop_db.sql_**
+
+Vemos como en efecto es mucho más cómodo y rápido usar directamente la [**<u>URL</u>**](https://www.vitalsanity.net:11443/vital-sanity) de **producción**.
 
 
 
