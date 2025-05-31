@@ -2,7 +2,7 @@
 
 # 🌐 URL de producción de **VitalSanity**
 
-## Puedes acceder a la **URL** de producción haciendo clic en el siguiente [**<u>enlace</u>**](https://www.vitalsanity.net:11443/vital-sanity).
+### Puedes acceder a la **URL** de producción haciendo clic en el siguiente [**<u>enlace</u>**](https://www.vitalsanity.net:11443/vital-sanity).
 
 
 Para la puesta en producción se ha utilizado **AWS**, aprovechando las tecnologías y herramientas mencionadas en la memoria.
@@ -31,7 +31,7 @@ Estos son los usuarios de prueba (la contraseña para todos ellos es **vitalsani
 - **laura.hernandez@example.com** (Profesional médico)
 - **pablo.rodriguez@example.com** (Profesional médico)
 
-En caso de querer probar la aplicación en local, se pueden insertar manualmente todos estos datos de prueba ejecutando el fichero de **seeders** **_resources\sql\database-script\seed_develop_db.sql_** (esto se explica a continuación).
+En caso de querer probar la aplicación en local, se pueden insertar manualmente todos estos datos de prueba ejecutando el fichero de **seeders** **_resources/sql/database-script/seed_develop_db.sql_** (esto se explica a continuación).
 
 # 🛠️ Instrucciones para ejecutar el proyecto en local
 
@@ -83,4 +83,7 @@ perfil de **postgres**:
 mvn spring-boot:run -D spring-boot.run.profiles=postgres
 ```
 
-Por último, es necesario ejecutar manualmente el fichero de seeders **_resources\sql\database-script\seed_develop_db.sql_**
+Por último, es necesario ejecutar manualmente el fichero de seeders **_resources/sql/database-script/seed_develop_db.sql_**
+
+
+
