@@ -2,13 +2,13 @@
 
 # 🌐 URL de producción de **VitalSanity**
 
-### Puedes acceder a la **URL** de producción en <a href="https://www.vitalsanity.net:11443/vital-sanity" target="_blank"><strong><u>enlace</u></strong></a>.
+### Puedes acceder a la **URL** de producción a través este [**<u>enlace</u>**](https://www.vitalsanity.net:11443/vital-sanity).
 
 
 Para la puesta en producción se ha utilizado **AWS**, aprovechando las tecnologías y herramientas mencionadas en la memoria.
 Además de las tecnologías que se explican en la memoria, también se ha empleado **Amazon RDS** para la configuración de la base de datos **PostgreSQL** en producción y **AWS Elastic Beanstalk** para desplegar la aplicación de forma **sencilla** y **escalable**.
 
-Destacar que el objetivo principal de la puesta en producción ha sido, por un lado, el ir un paso más en el **ciclo del desarrollo de Software** para **VitalSanity** y, por otro lado, el facilitar la comprobación de las funcionalidades de la aplicación a cualquier persona que desee acceder a ella. Asimismo, mencionar que la <a href="https://www.vitalsanity.net:11443/vital-sanity" target="_blank"><strong><u>URL</u></strong></a> de producción se utilizará el día de la **defensa** del **TFG** para poder mostrar las funcionalidades de la aplicación de forma **sencilla** y **natural**.
+Destacar que el objetivo principal de la puesta en producción ha sido, por un lado, el ir un paso más en el **ciclo del desarrollo de Software** para **VitalSanity** y, por otro lado, el facilitar la comprobación de las funcionalidades de la aplicación a cualquier persona que desee acceder a ella. Asimismo, mencionar que la [**<u>URL</u>**](https://www.vitalsanity.net:11443/vital-sanity) de producción se utilizará el día de la **defensa** del **TFG** para poder mostrar las funcionalidades de la aplicación de forma **sencilla** y **natural**.
 
 ## 🍃 Datos para probar la aplicación
 
@@ -35,7 +35,7 @@ En caso de querer probar la aplicación en local, se pueden insertar manualmente
 
 # 🛠️ Instrucciones para ejecutar el proyecto en local
 
-Cabe destacar que es altamente recomendable probar la aplicación **directamente** desde la <a href="https://www.vitalsanity.net:11443/vital-sanity" target="_blank"><strong><u>URL</u></strong></a> de **producción**.
+Cabe destacar que es altamente recomendable probar la aplicación **directamente** desde la [**<u>URL</u>**](https://www.vitalsanity.net:11443/vital-sanity) de **producción**.
 Aparte de que es mucho más cómodo, en el código del proyecto se han ocultado (por razones obvias) todas aquellas **credenciales sensibles** (como las credenciales de **AWS**).
 
 Por esta razón, si se quisiera probar la aplicación en local en su totalidad, se debería de modificar manualmente los ficheros de configuración (los ficheros **_.properties_**) para introducir **credenciales propias**.
@@ -85,7 +85,7 @@ mvn spring-boot:run -D spring-boot.run.profiles=postgres
 
 Por último, en este caso es necesario ejecutar manualmente el fichero de seeders **_resources/sql/database-script/seed_develop_db.sql_**
 
-En efecto, observamos como es mucho más cómodo y rápido usar directamente la <a href="https://www.vitalsanity.net:11443/vital-sanity" target="_blank"><strong><u>URL</u></strong></a> de **producción**.
+En efecto, observamos como es mucho más cómodo y rápido usar directamente la [**<u>URL</u>**](https://www.vitalsanity.net:11443/vital-sanity) de **producción**.
 
 
 
