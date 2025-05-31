@@ -85,7 +85,7 @@ mvn spring-boot:run -D spring-boot.run.profiles=postgres
 
 Por último, en este caso es necesario ejecutar manualmente el fichero de seeders **_resources/sql/database-script/seed_develop_db.sql_**
 
-Vemos como en efecto es mucho más cómodo y rápido usar directamente la [**<u>URL</u>**](https://www.vitalsanity.net:11443/vital-sanity) de **producción**.
+En efecto, observamos como es mucho más cómodo y rápido usar directamente la [**<u>URL</u>**](https://www.vitalsanity.net:11443/vital-sanity) de **producción**.
 
 
 
